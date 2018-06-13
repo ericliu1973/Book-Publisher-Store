@@ -8,7 +8,7 @@
     {%  for aa in authors %}{#    <p> Book Title: <a href="{% url "book_detail" book.id %}"> {{ book.name }} </a> </p>#}
 
         <p>
-            Name: <a hre="{% url "author_detail" aa.id %}}">  {{ aa.name }}
+            Name: <a href="{{aa.get_absolute_url}}">  {{ aa.name }}
                    </a>
         </p>
         <p> Age:{{ aa.age }}</p>

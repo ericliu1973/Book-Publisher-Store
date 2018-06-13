@@ -16,7 +16,7 @@
     <p> Book Publish Date: {{ book.pubdate }}</p>
 
     <p> Book Author: {% for a in book.authors.all %}
-             {{ a.name }},
+        <a href="{{ a.get_absolute_url }}" >{{ a.name }}, </a>
                 {% endfor %}
     </p>
    <hr>

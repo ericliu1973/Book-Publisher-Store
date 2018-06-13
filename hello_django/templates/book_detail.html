@@ -8,7 +8,7 @@
     <p> The followings are the detail info abou this book :</p>
     <strong> Name: {{ book.name }}</strong>
   <ul>
-      <li> Authors: {% for author in book.authors.all %}  <a href="author">{{author.name}}&nbsp </a>{% endfor%} </li>
+      <li> Authors: {% for author in book.authors.all %}  <a href="{{author.get_absolute_url }}">{{author.name}} </a>&nbsp&nbsp&nbsp&nbsp{% endfor%} </li>
       <li> Price: {{ book.price }}</li>
       <li> Page: {{ book.pages }}</li>
       <li> Publish Date: {{ book.pubdate }}</li>
