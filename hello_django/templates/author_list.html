@@ -5,9 +5,17 @@
     <title>The list of Authors</title>
 </head>
 <body>
-    {%  for a in authors %}
-        <h2> Name:{{ a.name }}</h2>
-        <h2> Age:{{ a.age }}</h2>
+    {%  for aa in authors %}{#    <p> Book Title: <a href="{% url "book_detail" book.id %}"> {{ book.name }} </a> </p>#}
+
+        <p>
+            Name: <a hre="{% url "author_detail" aa.id %}}">  {{ aa.name }}
+                   </a>
+        </p>
+        <p> Age:{{ aa.age }}</p>
+        <p> Nation:{{ aa.nation }}</p>
+        <a href="mailto:{{ aa.email }}?subject=hello&body=test">Email:{{ aa.email }}</a>
+     <hr>
     {% endfor %}
+    {% include "pagination.html" with page=page_obj %}
 </body>
 </html>

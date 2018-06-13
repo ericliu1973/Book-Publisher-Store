@@ -3,9 +3,15 @@ from django.core.urlresolvers import reverse
 class Author(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
+    email = models.EmailField(default='xxx@xxx.com')
+    nation= models.CharField(max_length=50,default='ca' )
+
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('author_detail',args=[self.id])
 
 class Publisher(models.Model):
     name = models.CharField(max_length=300)

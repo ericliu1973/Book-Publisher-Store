@@ -21,7 +21,8 @@
     </p>
    <hr>
    {% endfor %}
-{% include "pagination.html" with page=books %}
+{#{% include "pagination.html" with page=books %}#}
+{% include "pagination.html" with page=page_obj %}
 
 </body>
 </html>

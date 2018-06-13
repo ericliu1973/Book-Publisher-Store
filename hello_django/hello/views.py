@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.models import User
 from  hello.models import Book,Author,Publisher,Store
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+from django.views.generic import ListView
 # Create your views here.
 def hello(request):
 	user_list = User.objects.all()
@@ -47,3 +48,21 @@ def store_list(request):
 def book_datail(request,id):
     book = get_object_or_404(Book, id=id)
     return render(request,'book_detail.html',{'book':book})
+
+def author_datail(request,id):
+    author = get_object_or_404(Author, id=id)
+    return render(request,'author_detail.html',{'author':author})
+
+
+class BookListView(ListView):
+    queryset = Book.objects.all()
+    context_object_name = 'books'
+    paginate_by = 3
+    template_name = 'book_list.html'
+
+class AuthorListView(ListView):
+    queryset = Author.objects.all()
+    context_object_name = 'authors'
+    paginate_by = 3
+    template_name = 'author_list.html'
+

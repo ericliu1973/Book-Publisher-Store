@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <p> Author Info :</p>
+    <strong> Name: {{ author.name }}</strong>
+  <ul>
+      <li> Works: {% for book in author.book.all %}  <a href="book.get_absolute_url">{{book.name}}&nbsp </a>{% endfor%} </li>
+      <li> Age: {{ author.age }}</li>
+      <li> Nation: {{ author.nation }}</li>
+      <li> Email: {{ author.email }}</li>
+  </ul>
+
+<a href="{% url 'author_list' %}">Back to Author List</a>
+</body>
+</html>
