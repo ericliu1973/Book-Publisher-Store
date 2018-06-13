@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The detail info of book</title>
+</head>
+<body>
+    <p> The followings are the detail info abou this book :</p>
+    <strong> Name: {{ book.name }}</strong>
+  <ul>
+      <li> Authors: {% for author in book.authors.all %}  {{author.name}}&nbsp {% endfor%} </li>
+      <li> Price: {{ book.price }}</li>
+      <li> Page: {{ book.pages }}</li>
+      <li> Publish Date: {{ book.pubdate }}</li>
+      <li> Readers' Rating: {{ book.rating }}</li>
+      <li> Where to Buy: {% for store in book.store.all %}  {{store.name}}&nbsp {% endfor%} </li>
+  </ul>
+<a href="{% url "book_list" %}">  Back to List </a>
+</body>
+</html>

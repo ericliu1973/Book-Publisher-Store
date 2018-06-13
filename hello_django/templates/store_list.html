@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Store List</title>
+</head>
+<body>
+{%for s in stores%}
+<p> The Store Name : {{ s.name }}</p>
+<p>The books on sale:</p>
+     {% for b in s.books.all %}
+         <ul>
+         <li><strong>Name:<a href="{% url 'book_detail' b.id %}"> {{ b.name}}</strong> </a> </li>
+              Price:${{ b.price}} </br>
+              Pages:{{ b.pages }} </br>
+              Publish Date:{{ b.pubdate }} </br>
+         </ul>
+
+     {% endfor %}
+<hr>
+{% endfor %}
+</body>
+</html>
