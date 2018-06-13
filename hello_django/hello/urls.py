@@ -19,8 +19,8 @@ from hello import views
 urlpatterns = [
     url(r'^hello/$', views.hello),
     url(r'^author_list/$',views.author_list),
-    url(r'^store_list/$',views.store_list,name='book_list'),
-    url(r'^book_list/$',views.book_list),
+    url(r'^store_list/$',views.store_list,name='store_list'),
+    url(r'^book_list/$',views.book_list,name='book_list'),
     url(r'^publisher_list/$',views.publisher_list),
     url(r'^book/(?P<id>\d+)/$',views.book_datail,name='book_detail'),
 ]

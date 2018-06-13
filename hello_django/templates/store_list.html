@@ -6,8 +6,8 @@
 </head>
 <body>
 {%for s in stores%}
-<p> The Store Name : {{ s.name }}</p>
-<p>The books on sale:</p>
+<p> <strong>Store Name : {{ s.name }}</strong> </p>
+<p>Totally {{ s.books.all.count }} books on sale:</p>
      {% for b in s.books.all %}
          <ul>
          <li><strong>Name:<a href="{% url 'book_detail' b.id %}"> {{ b.name}}</strong> </a> </li>
@@ -19,5 +19,7 @@
      {% endfor %}
 <hr>
 {% endfor %}
+
+{% include "pagination.html" with page=stores %}
 </body>
 </html>

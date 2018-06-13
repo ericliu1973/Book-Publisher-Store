@@ -15,6 +15,6 @@
       <li> Readers' Rating: {{ book.rating }}</li>
       <li> Where to Buy: {% for store in book.store.all %}  {{store.name}}&nbsp {% endfor%} </li>
   </ul>
-<a href="{% url "book_list" %}">  Back to List </a>
+<a href="{% url "book_list" %}">  Back to Book List </a>
 </body>
 </html>
