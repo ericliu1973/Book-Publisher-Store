@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Hello ! {{ name }}</h1>
+    <p>Welcome to your dashboard. You can <a href="{% url "account:edit" %}">edit your profile</a> or <a href="{% url "account:password_change" %}">change your password</a>.</p>
+
+
+
+  <a href="{% url "account:logout" %}">logout</a>
+</body>
+</html>

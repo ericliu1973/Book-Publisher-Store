@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Your Account Info</title>
+</head>
+<body>
+<h1>Edit your account</h1>
+    <div>
+
+                            {% if messages %}
+                            <ul >
+                                {% for message in messages  %}
+                                <li>
+                                 {{ message|safe }}
+                                </li>
+                                {% endfor %}
+                            {%endif %}
+
+                            </ul>
+                    </div>
+    <p>You can edit your account using the following form:</p>
+    <form action="." method="post" enctype="multipart/form-data">
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Save changes"></p>
+    </form>
+ <p>  <a href="{%url "account:dashboard"%}"> back </a></p>
+</body>
+</html>
+
+
