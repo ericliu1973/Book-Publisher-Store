@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Book </title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<h4 style="color: #46b8da"><strong>The Book List</strong></h4>
+{% block title %} Book List {% endblock %}
 
+{% block content %}
+<h1 style="font-family: 'Pacifico', cursive;color: #1b6d85;text-align: center;margin-top: 100px"><strong>The Book List</strong></h1>
+<div style="margin-left: 200px;margin-top: 50px">
    {% for book in books %}
 {#    <p> Book Title: <a href="{% url "book_detail" book.id %}"> {{ book.name }} </a> </p>#}
     <p> Book Title: <a href="{{ book.get_absolute_url }}" > {{ book.name }} </a> </p>
@@ -19,10 +16,11 @@
         <a href="{{ a.get_absolute_url }}" >{{ a.name }}, </a>
                 {% endfor %}
     </p>
-   <hr>
-   {% endfor %}
-{#{% include "pagination.html" with page=books %}#}
-{% include "pagination.html" with page=page_obj %}
+   <br>
 
-</body>
-</html>
+   {% endfor %}
+
+{% include "pagination.html" with page=books %}
+{#{% include "pagination.html" with page=page_obj %}#}
+</div>
+{% endblock %}
