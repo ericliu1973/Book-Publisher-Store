@@ -1,46 +1,49 @@
 {% extends "base_a.html" %}
+{% load ratings %}
 {% block title %} Book Detail Infomation {% endblock %}
 {% block content %}
-    <div style="width: 80%;margin-left: auto;margin-top: 100px">
-    <h1 style="font-family: 'Pacifico', cursive"> <strong> Name: {{ book.name }}</strong></h1>
+     <div style="width: 80%;margin-left: auto;margin-top: 100px">
+    <h1 style="font-family: 'Pacifico', cursive"> <strong> Name: {{ object.name }}</strong></h1>
 
   <ul>
-      <li > Authors: {% for author in book.authors.all %}  <a style="color: greenyellow" href="{{author.get_absolute_url }}">{{author.name}} </a>&nbsp&nbsp&nbsp&nbsp{% endfor%} </li>
-      <li> Price: {{ book.price }}</li>
-      <li> Page: {{ book.pages }}</li>
-      <li> Publish Date: {{ book.pubdate }}</li>
-      <li> Readers' Rating: {{ book.rating }}</li>
-      <li> Where to Buy: {% for store in book.store.all %}  {{store.name}}&nbsp {% endfor%} </li>
+      <li > Authors: {% for author in object.authors.all %}  <a style="color: greenyellow" href="{{author.get_absolute_url }}">{{author.name}} </a>&nbsp&nbsp&nbsp&nbsp{% endfor%} </li>
+      <li> Price: {{ object.price }}</li>
+      <li> Page: {{ object.pages }}</li>
+      <li> Publish Date: {{ object.pubdate }}</li>
+      <li> Readers' Rating: {{ object.rating }}</li>
+      <li> Where to Buy: {% for store in object.store.all %}  {{store.name}}&nbsp {% endfor%} </li>
+      <li> {% ratings object %} </li>
   </ul>
-        {% with comments.count as totoal_comments %}
-        <h4> {{ totoal_comments }} comment{{ totoal_comments|pluralize }}</h4>
-         {% endwith %}
+        <br>
 
-    {% for comment in comments %}
-        <div>
-          <p style="padding-left: 30px">Comment{{ forloop.counter }} by {{ comment.person }} on {{ comment.pubdate }}
-          </p>
-          <p> {{ comment.body }} </p>
-        </div>
-        {% empty %}
-        <p> There is no comment for this book.</p>
-    {% endfor %}
+       <div style="padding-left: 20px">
 
-    {% if new_comment %}
-        <h5>Your comment has been added successfully !</h5>
-     {% else %}
-        <h5>Add a new comment</h5>
-        <form action="." method="post">
+                {% with comments_list.count as totoal_comments %}
+                <h4> {{ totoal_comments }} Readers' comment{{ totoal_comments|pluralize }}</h4>
+                 {% endwith %}
 
-        {{ comment_form.as_p }}
-        {% csrf_token %}
-        <p> <input type="submit" value="Add Comment"></p>
-        </form>
 
-    {% endif %}
+                {% for comment in comment_list %}
+
+                                <p style="padding-left: 10px"><span style="color: greenyellow;font-family: Monaco">Comment{{ forloop.counter }}</span> by <span style="color: greenyellow;font-family: Monaco">{{ comment.person }}</span>  on {{ comment.pubdate }}
+                                </p>
+                            <div >
+                                <p style="width: 30%;font-family: Arial;font-size: small"> {{ comment.body }} </p>
+                            </div>
+                            {% empty %}
+                              <p style="font-family: Pacifico;color: rebeccapurple"> There is no comment for this book.</p>
+                {% endfor %}
+                     <p style="float: right;margin-right: 50px">
+
+                         <a class="btn btn-info btn-primary" role="button" href="{% url 'add_comment' object.id %}"> Add Comment</a>
+                         <a class="btn btn-info btn-primary" role="button" href="{% url 'book_list' %}"> Back to Book List</a>
 
 
 
-<a class="btn btn-lg btn-primary" role="button" style="color: red" href="{% url "book_list" %}">  Back to Book List </a>
-    </div>
+                     </p>
+
+
+
+         </div>
+</div>
 {% endblock %}

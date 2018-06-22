@@ -1,0 +1,17 @@
+{% extends "base_a.html" %}
+{% load ratings %}
+{% block title %} Book Detail Infomation {% endblock %}
+{% block content %}
+
+<div style="width: 80%;margin-left: auto;margin-top: 100px">
+        <p style="font-family: Monaco;font-size: medium"> Comment for the book : <span style="color: gold;font-size: large" >{{ book.name }}</span></p>
+                    <form action="." method="post">
+
+                    {{ comment_form.as_p }}
+
+                    {% csrf_token %}
+                    <input class="btn btn-danger btn-primary" role="button"  type="submit" value="Add Comment">
+        </form>
+
+</div>
+{% endblock %}

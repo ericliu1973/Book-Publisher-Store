@@ -1,8 +1,10 @@
-from django.shortcuts import render,get_object_or_404
+from django.core.urlresolvers import  reverse
+from django.shortcuts import render,get_object_or_404,redirect
+from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from  hello.models import Book,Author,Publisher,Store,Comment
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView
 from hello.forms import CommentForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -70,6 +72,22 @@ def book_datail(request,id):
 
     return render(request,'book_detail.html',{'book':book,'comments':comments,'comment_form':comment_form,'new_comment':new_comment})
 
+def add_comment(request,id):
+    book = Book.objects.get(id=id)
+    if request.method=='POST':
+        comment_form=CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.book = book
+            new_comment.person = request.user
+            new_comment.save()
+            return HttpResponseRedirect(reverse("book_detail",kwargs={"pk":book.id}))
+    else:
+        comment_form = CommentForm()
+        new_comment = False
+    return render(request, 'add_comment.html',
+                  {'book': book, 'comment_form': comment_form, 'new_comment': new_comment})
+
 @login_required
 def author_datail(request,id):
     author = get_object_or_404(Author, id=id)
@@ -88,3 +106,21 @@ class AuthorListView(ListView):
     paginate_by = 3
     template_name = 'author_list.html'
 
+class BookDetailView(DetailView):
+    model = Book
+    template_name = 'book_detail.html'
+    # def get_object(self, queryset=None):
+    #     obj=self.model.objects.get(name__startswith='python')
+    #     return obj
+
+    def get_context_data(self, **kwargs):
+        # 覆写 get_context_data 的目的是因为除了将 post 传递给模板外（DetailView 已经帮我们完成），
+        # 还要把评论表单、post 下的评论列表传递给模板。
+        context = super(BookDetailView, self).get_context_data(**kwargs)
+        # form = CommentForm()
+        comment_list = self.object.comment.all()
+        context.update({
+            # 'form': form,
+            'comment_list': comment_list,
+        })
+        return context

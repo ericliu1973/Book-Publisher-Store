@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^account/',include('account.urls',namespace='account',app_name='account')),
     url(r'^', include('hello.urls')),
+    url(r'^ratings/',include('star_ratings.urls',namespace='ratings',app_name='ratings')),
 
 ]
 
