@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.core.urlresolvers import reverse
 class Author(models.Model):
@@ -44,3 +45,16 @@ class Store(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Comment(models.Model):
+    book =models.ForeignKey(Book,related_name='comment')
+    body = models.TextField()
+    pubdate= models.DateField(auto_now_add=True)
+    person =models.ForeignKey(User,related_name='comment')
+
+    class Meta:
+        ordering =('pubdate',)
+
+    def __str__(self):
+        return 'Comment by {} on {}'.format(self.person,self.book)

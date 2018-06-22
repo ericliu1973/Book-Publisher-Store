@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Your Account Info</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Edit Your Account Info{% endblock %}
+{% block content %}
+<div style="margin-top: 15%;margin-left: 30%">
+
 <h1>Edit your account</h1>
     <div>
 
@@ -26,8 +24,8 @@
         {% csrf_token %}
         <p><input type="submit" value="Save changes"></p>
     </form>
- <p>  <a href="{%url "account:dashboard"%}"> back </a></p>
-</body>
-</html>
+ <p>  <a style="color: gold" href="{%url "account:dashboard"%}"> back </a></p>
+</div>
+{% endblock %}
 
 

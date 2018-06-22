@@ -1,8 +1,9 @@
-{% extends "base.html" %}
+{% extends "base_a.html" %}
 
 {% block title %} Book List {% endblock %}
 
 {% block content %}
+
 <h1 style="font-family: 'Pacifico', cursive;color: #1b6d85;text-align: center;margin-top: 100px"><strong>The Book List</strong></h1>
 <div style="margin-left: 200px;margin-top: 50px">
    {% for book in books %}
@@ -22,5 +23,7 @@
 
 {% include "pagination.html" with page=books %}
 {#{% include "pagination.html" with page=page_obj %}#}
+
 </div>
+
 {% endblock %}

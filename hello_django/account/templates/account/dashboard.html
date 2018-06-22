@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-</head>
-<body>
-    <h1>Hello ! {{ name }}</h1>
+{% extends "base.html" %}
+{% block title %}Personal Homepage{% endblock %}
+{% block content %}
+<div style="margin-top: 25%;margin-left: 30%">
+    <h1>Hello ! <h1 style="font-family: 'Pacifico', cursive;color: gold;display: inline">{{ name }}  </h1> </h1>
     <p>Welcome to your dashboard. You can <a href="{% url "account:edit" %}">edit your profile</a> or <a href="{% url "account:password_change" %}">change your password</a>.</p>
 
 
 
   <a href="{% url "account:logout" %}">logout</a>
-</body>
-</html>
+</div>
+{% endblock %}

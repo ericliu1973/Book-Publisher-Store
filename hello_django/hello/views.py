@@ -1,8 +1,9 @@
 from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.models import User
-from  hello.models import Book,Author,Publisher,Store
+from  hello.models import Book,Author,Publisher,Store,Comment
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.views.generic import ListView
+from hello.forms import CommentForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def hello(request):
@@ -50,7 +51,24 @@ def store_list(request):
 @login_required
 def book_datail(request,id):
     book = get_object_or_404(Book, id=id)
-    return render(request,'book_detail.html',{'book':book})
+
+    comments = book.comment.all()
+
+    if request.method=='POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment= comment_form.save(commit=False)
+            new_comment.book=book
+            new_comment.person=request.user
+            new_comment.save()
+    else:
+        comment_form=CommentForm()
+        new_comment=False
+
+
+
+
+    return render(request,'book_detail.html',{'book':book,'comments':comments,'comment_form':comment_form,'new_comment':new_comment})
 
 @login_required
 def author_datail(request,id):

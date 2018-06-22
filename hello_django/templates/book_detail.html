@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_a.html" %}
 {% block title %} Book Detail Infomation {% endblock %}
 {% block content %}
     <div style="width: 80%;margin-left: auto;margin-top: 100px">
@@ -12,6 +12,35 @@
       <li> Readers' Rating: {{ book.rating }}</li>
       <li> Where to Buy: {% for store in book.store.all %}  {{store.name}}&nbsp {% endfor%} </li>
   </ul>
+        {% with comments.count as totoal_comments %}
+        <h4> {{ totoal_comments }} comment{{ totoal_comments|pluralize }}</h4>
+         {% endwith %}
+
+    {% for comment in comments %}
+        <div>
+          <p style="padding-left: 30px">Comment{{ forloop.counter }} by {{ comment.person }} on {{ comment.pubdate }}
+          </p>
+          <p> {{ comment.body }} </p>
+        </div>
+        {% empty %}
+        <p> There is no comment for this book.</p>
+    {% endfor %}
+
+    {% if new_comment %}
+        <h5>Your comment has been added successfully !</h5>
+     {% else %}
+        <h5>Add a new comment</h5>
+        <form action="." method="post">
+
+        {{ comment_form.as_p }}
+        {% csrf_token %}
+        <p> <input type="submit" value="Add Comment"></p>
+        </form>
+
+    {% endif %}
+
+
+
 <a class="btn btn-lg btn-primary" role="button" style="color: red" href="{% url "book_list" %}">  Back to Book List </a>
     </div>
 {% endblock %}
