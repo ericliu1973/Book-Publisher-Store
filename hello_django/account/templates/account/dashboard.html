@@ -7,6 +7,8 @@
 
 
 
-  <a href="{% url "account:logout" %}">logout</a>
+  <a class="btn btn-info btn-primary" style="color: gold" role="button" href="{% url "account:logout" %}">logout</a>
+  <a class="btn btn-info btn-primary" style="color: gold" role="button" href="{% url "hello:book_list" %}">Book List</a>
+  <a class="btn btn-info btn-primary" style="color: gold" role="button" href="{% url "hello:author_list" %}">Author List</a>
 </div>
 {% endblock %}

@@ -14,7 +14,7 @@ class Author(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('author_detail',args=[self.id])
+        return reverse('hello:author_detail',args=[self.id])
 
 class Publisher(models.Model):
     name = models.CharField(max_length=300)
@@ -36,7 +36,7 @@ class Book(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('book_detail',args=[self.id,])
+        return reverse('hello:book_detail',args=[self.id,])
 
 class Store(models.Model):
     name = models.CharField(max_length=300)
@@ -49,7 +49,7 @@ class Store(models.Model):
 
 class Comment(models.Model):
     book =models.ForeignKey(Book,related_name='comment')
-    body = models.TextField()
+    content = models.TextField()
     pubdate= models.DateTimeField(auto_now_add=True)
     # pubdate_f=models.DateTimeField(auto_now_add=True)
     person =models.ForeignKey(User,related_name='comment')

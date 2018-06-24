@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'hello',
     'star_ratings',
+    'bootstrap3',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -111,8 +112,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+USE_TZ=True
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
