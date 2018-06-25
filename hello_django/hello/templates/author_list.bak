@@ -1,0 +1,55 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html >
+<head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+       <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+       <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+       <link href="{% static 'css/style.css' %}" rel="stylesheet">
+       <script src="{% static 'js/jquery.min.js' %}"></script>
+       <script src="{% static 'js/bootstrap.min.js' %}"></script>
+       <title>The list of Authors 作家列表</title>
+</head>
+<body style="background-color: #bce8f1;background-image: url(/media/PIC/img1.jpg)">
+
+<div style="text-align: center;color: #5bc0de;font-family:Pacifico">
+  <h1 style="font-family:'Pacifico', cursive">   Author List  </h1>
+</div>
+
+
+
+<table class="table table-striped table-bordered table-hover table-condensed" style="width: 1500px;margin: auto">
+        <thead>
+          <tr class="info">
+            <th> ID </th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Nation</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+
+         {%  for aa in authors %}
+       <tr class="success">
+              <td class="warning"> {{ aa.pk }} </td>
+              <td class="active"><a href="{{aa.get_absolute_url}}">   {{ aa.name }} </a> </td>
+              <td class="danger"> {{ aa.age }} </td>
+              <td class="warning"> {{ aa.nation }} </td>
+              <td> <a href="mailto:{{ aa.email }}?subject=hello &body=kkkxxx%0d%0ayyy">{{ aa.email }}</a>  </td>
+       </tr>
+
+       {% endfor %}
+
+        </tbody>
+      </table>
+
+{#<img src="/media/users/2018/06/19/2.JPG" alt="..." class="img-rounded">#}
+<img src="/media/users/2018/06/19/2.JPG" alt="..." class="img-circle" style="width:200px;height: 180px;">
+{#<img src="/media/users/2018/06/19/2.JPG" alt="..." class="img-thumbnail">#}
+
+</body>
+
+</html>

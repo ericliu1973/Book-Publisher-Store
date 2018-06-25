@@ -17,7 +17,8 @@ from django.conf.urls import url
 from hello import views
 
 urlpatterns = [
-    url(r'^hello/$', views.hello),
+    url(r'^$', views.hello),
+
     url(r'^author_list/$',views.author_list,name='author_list'),
     url(r'^store_list/$',views.store_list,name='store_list'),
     url(r'^book_list/$',views.book_list,name='book_list'),

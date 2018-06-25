@@ -1,0 +1,47 @@
+{% extends "base_a.html" %}
+{% load ratings %}
+{% block title %} Book Detail Infomation {% endblock %}
+{% block content %}
+     <div style="width: 80%;margin-left: auto;margin-top: 100px">
+    <h1 style="font-family: 'Pacifico', cursive"> <strong> Name: {{ object.name }}</strong></h1>
+
+  <ul>
+      <li > Authors: {% for author in object.authors.all %}  <a style="color: greenyellow" href="{{author.get_absolute_url }}">{{author.name}} </a>&nbsp&nbsp&nbsp&nbsp{% endfor%} </li>
+      <li> Price: {{ object.price }}</li>
+      <li> Page: {{ object.pages }}</li>
+      <li> Publish Date: {{ object.pubdate }}</li>
+      <li> Readers' Rating: {{ object.rating }}</li>
+      <li> Where to Buy: {% for store in object.store.all %}  {{store.name}}&nbsp {% endfor%} </li>
+      <li> {% ratings object %} </li>
+  </ul>
+        <br>
+
+       <div style="padding-left: 20px">
+
+                {% with comments_list.count as totoal_comments %}
+                <h4> {{ totoal_comments }} Readers' comment{{ totoal_comments|pluralize }}</h4>
+                 {% endwith %}
+
+
+                {% for comment in comment_list %}
+
+                                <p style="padding-left: 10px"><span style="color: greenyellow;font-family: Monaco">Comment{{ forloop.counter }}</span> by <span style="color: greenyellow;font-family: Monaco">{{ comment.person }}</span>  on {{ comment.pubdate }}
+                                </p>
+                            <div >
+                                <p style="width: 30%;font-family: Arial;font-size: small"> {{ comment.content }} </p>
+                            </div>
+                            {% empty %}
+                              <p style="font-family: Pacifico;color: rebeccapurple"> There is no comment for this book.</p>
+                {% endfor %}
+                     <p style="float: right;margin-right: 50px">
+
+                         <a class="btn btn-info btn-primary" role="button" href="{% url 'hello:add_comment' object.id %}"> Add Comment</a>
+                         <a class="btn btn-info btn-primary" role="button" href="{% url 'hello:book_list' %}"> Back to Book List</a>
+
+                     </p>
+
+
+
+         </div>
+</div>
+{% endblock %}

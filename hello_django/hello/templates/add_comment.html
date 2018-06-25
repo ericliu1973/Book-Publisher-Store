@@ -1,0 +1,19 @@
+{% extends "base_a.html" %}
+{% load ratings %}
+{% load bootstrap3 %}
+{% block title %} Book Detail Infomation {% endblock %}
+{% block content %}
+
+<div style="width: 80%;margin-left: 50px;margin-top: 100px">
+        <p style="margin-left:25%;font-family: Monaco;font-size: x-large"> Comment for the book :<a style="color: gold;font-size:xx-large" href="{{ book.get_absolute_url }}"> {{ book.name }}</a></p>
+                    <form role="form" class="form-horizontal" action="." method="post">
+
+{#                    {{ comment_form.as_p }}#}
+                    {% bootstrap_form comment_form layout="horizontal" %}
+                    {% csrf_token %}
+{#                    <input class="btn btn-danger btn-primary" role="button"  type="submit" value="Add Comment">#}
+                    {% buttons submit='submit' reset='cancel' layout='horizontal' %} {% endbuttons %}
+                    </form>
+
+</div>
+{% endblock %}

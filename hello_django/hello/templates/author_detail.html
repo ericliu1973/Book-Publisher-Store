@@ -1,0 +1,25 @@
+{% extends "base_a.html" %}
+{% block title %}  Author Detail Info {% endblock %}
+
+{% block content %}
+
+
+<div style="margin-left: 200px;margin-top: 50px">
+<img src="{{ author.photo.url }}" alt="Photo Not Found" style="float: left ">
+
+   <div style="float: left;padding-left: 40px">
+   <h2 style="text-align: center;font-family: 'Pacifico', cursive"> Author Info :</h2>
+    <strong> Name: {{ author.name }}</strong>
+  <ul >
+      <li> Works: {% for book in author.book.all %}  <a href="{{ book.get_absolute_url }}" style="color: orangered">{{book.name}}&nbsp </a>&nbsp&nbsp&nbsp&nbsp{% endfor%} </li>
+      <li> Birth Date: {{ author.date_of_birth }}</li>
+      <li> Age: {{ author.age }}</li>
+      <li> Nation: {{ author.nation }}</li>
+      <li> Email: {{ author.email }}</li>
+
+  </ul>
+<br><br>
+<a class="btn btn-primary btn-lg" role="button" style="color: greenyellow" href="{% url 'hello:author_list' %}">Back to Author List</a>
+  </div>
+</div>
+{% endblock %}

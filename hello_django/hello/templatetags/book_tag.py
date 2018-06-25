@@ -22,13 +22,13 @@ def get_high_score(count = 5 ):
 
 @register.assignment_tag
 def get_year_list():
-    ll=[]
-    for obj in Book.objects.all():
-        y =obj.pubdate.year
-        ll.append(y)
-    ss=set(ll)
-    print(ss)
+    # ll=[]
+    # for obj in Book.objects.all():
+    #     y =obj.pubdate.year
+    #     ll.append(y)
+    tt =[l.pubdate.year for l in Book.objects.all() ]
+    print(tt)
+    ss=set(tt)
     ll=list(ss)
     ll.sort()
-    print(ll)
     return ll

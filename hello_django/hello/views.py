@@ -9,9 +9,7 @@ from hello.forms import CommentForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def hello(request):
-	user_list = User.objects.all()
-	return render(request, 'table.html', {'user_list':user_list})
-
+	return  HttpResponseRedirect(reverse("account:login",))
 @login_required
 def book_list(request):
         # books=Book.objects.all()
