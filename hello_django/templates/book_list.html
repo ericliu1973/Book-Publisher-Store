@@ -1,27 +1,55 @@
 {% extends "base_a.html" %}
-
+{% load book_tag %}
 {% block title %} Book List {% endblock %}
 
 {% block content %}
 
 <h1 style="font-family: 'Pacifico', cursive;color: #1b6d85;text-align: center;margin-top: 100px"><strong>The Book List</strong></h1>
-<div style="margin-left: 200px;margin-top: 50px">
-   {% for book in books %}
-{#    <p> Book Title: <a href="{% url "book_detail" book.id %}"> {{ book.name }} </a> </p>#}
-    <p> Book Title: <a href="{{ book.get_absolute_url }}" > {{ book.name }} </a> </p>
-    <p> Book Price: ${{ book.price }}</p>
-    <p> Book Page: {{ book.pages }}</p>
-    <p> Book Publish Date: {{ book.pubdate }}</p>
+<div class="contents">
+            <div style="float:left;margin-left: 200px;margin-top: 50px">
+               {% for book in books %}
+            {#    <p> Book Title: <a href="{% url "book_detail" book.id %}"> {{ book.name }} </a> </p>#}
+                <p> Book Title: <a href="{{ book.get_absolute_url }}" > {{ book.name }} </a> </p>
+                <p> Book Price: ${{ book.price }}</p>
+                <p> Book Page: {{ book.pages }}</p>
+                <p> Book Publish Date: {{ book.pubdate }}</p>
 
-    <p> Book Author: {% for a in book.authors.all %}
-        <a href="{{ a.get_absolute_url }}" >{{ a.name }}, </a>
-                {% endfor %}
-    </p>
-   <br>
+                <p> Book Author: {% for a in book.authors.all %}
+                    <a href="{{ a.get_absolute_url }}" >{{ a.name }}, </a>
+                            {% endfor %}
+                </p>
+               <br>
 
-   {% endfor %}
+               {% endfor %}
+            {% include "pagination.html" with page=books %}
+            </div>
 
-{% include "pagination.html" with page=books %}
+    <div style="font-family:'Apple Chancery';color:greenyellow  ;font-size:x-large;width: 30%;float: right;margin-top: 50px;margin-right: 400px">
+                <p> Total<strong style="color: gold"> {% total_books %} </strong>books in the database </p>
+               <ul style="color: yellowgreen;font-size: initial">Top 5 newest Books:
+                         {%  get_new_books as new_list %}
+                        {%  for book in new_list  %}
+                         <li style="color: gold"> Book name:<a style="color: #b92c28" role="button" href="{{ book.get_absolute_url }}"> {{ book.name }}</a>&nbsp;Book Publish Date:{{ book.pubdate }}</li>
+                        {% endfor %}
+                </ul>
+
+                <ul style="color:palevioletred;font-size: initial">Top 5 Commented Books:
+                         {%  get_most_comment as most_list %}
+                        {%  for book in most_list  %}
+                         <li style="color: gold"> Book name:<a style="color: #b92c28" role="button" href="{{ book.get_absolute_url }}"> {{ book.name }}</a>&nbsp;Comments:{{ book.total_comment }}</li>
+                        {% endfor %}
+                </ul>
+
+                 <ul style="color:orangered;font-size: initial">Top 5 Rated Books:
+                         {%  get_high_score as high_list %}
+                        {%  for book in high_list  %}
+                         <li style="color: gold"> Book name:<a style="color: #b92c28" role="button" href="{{ book.content_object.get_absolute_url }}"> {{ book.content_object.name }}</a>&nbsp;Score:{{ book.average|floatformat:2 }}</li>
+                        {% endfor %}
+                </ul>
+
+            </p>
+
+
 {#{% include "pagination.html" with page=page_obj %}#}
 
 </div>

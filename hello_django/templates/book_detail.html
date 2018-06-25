@@ -28,7 +28,7 @@
                                 <p style="padding-left: 10px"><span style="color: greenyellow;font-family: Monaco">Comment{{ forloop.counter }}</span> by <span style="color: greenyellow;font-family: Monaco">{{ comment.person }}</span>  on {{ comment.pubdate }}
                                 </p>
                             <div >
-                                <p style="width: 30%;font-family: Arial;font-size: small"> {{ comment.body }} </p>
+                                <p style="width: 30%;font-family: Arial;font-size: small"> {{ comment.content }} </p>
                             </div>
                             {% empty %}
                               <p style="font-family: Pacifico;color: rebeccapurple"> There is no comment for this book.</p>
@@ -37,8 +37,6 @@
 
                          <a class="btn btn-info btn-primary" role="button" href="{% url 'hello:add_comment' object.id %}"> Add Comment</a>
                          <a class="btn btn-info btn-primary" role="button" href="{% url 'hello:book_list' %}"> Back to Book List</a>
-
-
 
                      </p>
 

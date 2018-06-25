@@ -81,7 +81,7 @@ def add_comment(request,id):
             new_comment.book = book
             new_comment.person = request.user
             new_comment.save()
-            return HttpResponseRedirect(reverse("book_detail",kwargs={"pk":book.id}))
+            return HttpResponseRedirect(reverse("hello:book_detail",kwargs={"pk":book.id}))
     else:
         comment_form = CommentForm()
         new_comment = False

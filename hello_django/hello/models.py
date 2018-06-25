@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.urlresolvers import reverse
+from star_ratings.models import Rating
+from django.contrib.contenttypes.fields import GenericRelation
+
 class Author(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
