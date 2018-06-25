@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^store_list/$',views.store_list,name='store_list'),
     url(r'^book_list/$',views.book_list,name='book_list'),
     url(r'^publisher_list/$',views.publisher_list),
+    url(r'^book_list/(?P<year>\d+)/$',views.BookListByYear,name='book_year_list'),
     # url(r'^book/(?P<id>\d+)/$',views.book_datail,name='book_detail'),
     url(r'^addcomment/(?P<id>\d+)/$',views.add_comment,name='add_comment'),
     url(r'^author/(?P<id>\d+)/$',views.author_datail,name='author_detail'),

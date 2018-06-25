@@ -24,7 +24,7 @@
             {% include "pagination.html" with page=books %}
             </div>
 
-    <div style="font-family:'Apple Chancery';color:greenyellow  ;font-size:x-large;width: 30%;float: right;margin-top: 50px;margin-right: 400px">
+    <div style="font-family:'Apple Chancery';color:greenyellow  ;font-size:x-large;width: 30%;float: right;margin-top: 50px;margin-right: 200px">
                 <p> Total<strong style="color: gold"> {% total_books %} </strong>books in the database </p>
                <ul style="color: yellowgreen;font-size: initial">Top 5 newest Books:
                          {%  get_new_books as new_list %}
@@ -48,7 +48,12 @@
                 </ul>
 
             </p>
-
+            <p style="font-size: small"> Book list Archieved by year:
+                {% get_year_list as year_list %}
+                   {% for y in year_list %}
+                   <a style="text-decoration: underline" href="{% url "hello:book_year_list" y %}"> {{ y }} </a>&nbsp
+                   {% endfor %}<a style="text-decoration: underline" href="{% url "hello:book_list" %}"> All </a>
+            </p>
 
 {#{% include "pagination.html" with page=page_obj %}#}
 

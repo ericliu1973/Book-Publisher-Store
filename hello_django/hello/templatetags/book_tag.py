@@ -19,3 +19,16 @@ def get_most_comment(count =5):
 @register.assignment_tag
 def get_high_score(count = 5 ):
     return Rating.objects.order_by('-average')[0:5]
+
+@register.assignment_tag
+def get_year_list():
+    ll=[]
+    for obj in Book.objects.all():
+        y =obj.pubdate.year
+        ll.append(y)
+    ss=set(ll)
+    print(ss)
+    ll=list(ss)
+    ll.sort()
+    print(ll)
+    return ll

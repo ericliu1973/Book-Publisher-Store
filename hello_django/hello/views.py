@@ -100,6 +100,23 @@ class BookListView(ListView):
     paginate_by = 3
     template_name = 'book_list.html'
 
+@login_required
+def BookListByYear(request,year):
+    book_list=Book.objects.filter(pubdate__year=year)
+    paginator=Paginator(book_list,3)
+    page=request.GET.get('page')
+    try:
+            books = paginator.page(page)
+    except PageNotAnInteger:
+            books =paginator.page(1)
+    except EmptyPage:
+            books=paginator.page(paginator.num_pages)
+    return render(request,'book_list.html',{'page':page,'books':books })
+
+
+
+
+
 class AuthorListView(ListView):
     queryset = Author.objects.all()
     context_object_name = 'authors'
