@@ -33,10 +33,10 @@
                             {% empty %}
                               <p style="font-family: Pacifico;color: rebeccapurple"> There is no comment for this book.</p>
                 {% endfor %}
-                     <p style="float: right;margin-right: 50px">
+                     <p style="float: right;margin-right: 25%">
 
                          <a class="btn btn-info btn-primary" role="button" href="{% url 'hello:add_comment' object.id %}"> Add Comment</a>
-                         <a class="btn btn-info btn-primary" role="button" href="{% url 'hello:book_list' %}"> Back to Book List</a>
+{#                         <a class="btn btn-info btn-primary" role="button" href="{% url 'hello:book_list' %}"> Back to Book List</a>#}
 
                      </p>
 

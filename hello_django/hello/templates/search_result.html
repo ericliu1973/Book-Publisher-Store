@@ -1,0 +1,48 @@
+{% extends "base_a.html" %}
+
+{% block title %} Search Result{% endblock %}
+
+{% block content %}
+        <div style="margin-left: 200px;margin-top: 50px">
+                {% if num %}
+                        {% if flag %}
+                                <h2 style="text-align: center;font-family: 'Pacifico', cursive"> Book Search Result  :</h2>
+                                {% for book in books %}
+                                   <ul>
+                                       <p> <strong>Result </strong>{{ forloop.counter }} : </p>
+                                        <li> Book Title: <a href="{{ book.get_absolute_url }}" style="color: gold" > <strong>{{ book.name }}</strong> </a> </li>
+                                        <li> Book Price: ${{ book.price }}</li>
+                                        <li> Book Page: {{ book.pages }}</li>
+                                        <li> Book Publish Date: {{ book.pubdate }}</li>
+                                        <li> Book Author: {% for a in book.authors.all %}
+                                            <a href="{{ a.get_absolute_url }}" style="color: orange;text-decoration: underline" >{{ a.name }} </a>&nbsp&nbsp
+                                                    {% endfor %}
+                                        </li>
+                                    </ul>
+                                       <br>
+
+                               {% endfor %}
+                        {% else %}
+                                 <h2 style="text-align: center;font-family: 'Pacifico', cursive"> Author Search Result  :</h2>
+                                 {% for author in authors %}
+                {#                        <img src="{{ author.photo.url }}" alt="Photo Not Found" style="float: left ">#}
+                                        <p> <strong>result </strong> {{ forloop.counter }} : </p>
+                                        <strong> Name: <a href="{{ author.get_absolute_url }}" style="color: gold;text-decoration: underline">{{ author.name }}</a> </strong>
+                                          <ul >
+                                              <li> Works: {% for book in author.book.all %}  <a href="{{ book.get_absolute_url }}" style="color: orangered">{{book.name}}&nbsp </a>&nbsp&nbsp&nbsp&nbsp{% endfor%} </li>
+                                              <li> Birth Date: {{ author.date_of_birth }}</li>
+                                              <li> Age: {{ author.age }}</li>
+                                              <li> Nation: {{ author.nation }}</li>
+                                              <li> Email: {{ author.email }}</li>
+                                          </ul>
+                                        <br><br>
+                                {% endfor %}
+
+                        {% endif %}
+
+                {% else %}
+                       <h2 style="margin-left: 200px;margin-top: 200px;color: greenyellow"> Sorry, there is no record in the database !</h2>
+
+                {% endif %}
+        </div>
+{% endblock %}

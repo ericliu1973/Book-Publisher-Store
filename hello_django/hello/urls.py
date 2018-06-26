@@ -30,6 +30,7 @@ urlpatterns = [
     # url(r'^post/(?P<pk>[0-9]+)/$',views.PostDetailView.as_view(), name='detail'),
     url(r'^book/(?P<pk>[0-9]+)/$',views.BookDetailView.as_view(),name='book_detail'),
     url(r'^testrating/$',views.BookDetailView.as_view(),name='rating_test'),
+    url(r'^search/(?P<s_type>\d+)/(?P<keyword>\w+)/$',views.search,name='search'),
     # url(r'^book_list/$',views.BookListView.as_view(),name='book_list'),
     # url(r'^author_list/$',views.AuthorListView.as_view(),name='author_list'),
 ]

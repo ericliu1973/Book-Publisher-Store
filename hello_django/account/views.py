@@ -6,7 +6,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile
-
+from hello.forms import SearchForm
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import  reverse
 @login_required
 def edit(request):
     if request.method == 'POST':
@@ -32,7 +34,16 @@ def edit(request):
 @login_required
 def dashboard(request):
     user=request.user.first_name
-    return render(request, 'account/dashboard.html', {'section': 'dashboard','name':user})
+    if request.method=='POST':
+         search_form=SearchForm(data=request.POST)
+         if search_form.is_valid():
+             cd= search_form.cleaned_data
+             s_type = cd['search_type']
+             keyword = cd['search_words']
+             return HttpResponseRedirect(reverse("hello:search",kwargs={'s_type':s_type,'keyword':keyword}))
+
+    form=SearchForm()
+    return render(request, 'account/dashboard.html', {'section': 'dashboard','name':user,'form':form})
 
 def register(request):
     if request.method == 'POST':

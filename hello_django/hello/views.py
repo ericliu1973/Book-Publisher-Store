@@ -5,11 +5,14 @@ from django.contrib.auth.models import User
 from  hello.models import Book,Author,Publisher,Store,Comment
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.views.generic import ListView,DetailView
-from hello.forms import CommentForm
+from hello.forms import CommentForm,SearchForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+
 def hello(request):
 	return  HttpResponseRedirect(reverse("account:login",))
+
+
 @login_required
 def book_list(request):
         # books=Book.objects.all()
@@ -25,14 +28,38 @@ def book_list(request):
             books=paginator.page(paginator.num_pages)
         return render(request,'book_list.html',{'page':page,
                                                     'books':books })
+
 @login_required
 def author_list(request):
-	authors=Author.objects.all()
-	return render(request,'author_list.html',{'authors':authors})
+    authors = Author.objects.all()
+    if request.method=='POST':
+         search_form=SearchForm(data=request.POST)
+         if search_form.is_valid():
+             cd= search_form.cleaned_data
+             s_type = cd['search_type']
+             keyword = cd['search_words']
+             return HttpResponseRedirect(reverse("hello:search",kwargs={'s_type':s_type,'keyword':keyword}))
+
+    form=SearchForm()
+    return render(request, 'author_list.html', {'authors': authors,'form': form})
+
+def search(request,s_type,keyword):
+    if s_type=='0':
+        alist = Author.objects.filter(name__contains=keyword)
+        if len(alist)>0:
+            return render(request,'search_result.html',{'authors':alist,'flag':0,'num':1})
+    if s_type=='1':
+        blist=Book.objects.filter(name__contains=keyword)
+        if len(blist)>0:
+            return render(request,'search_result.html',{'books':blist,'flag':1,'num':1})
+
+    return render(request,'search_result.html',{'num':0})
+
 @login_required
 def publisher_list(request):
 	publishers=Publisher.objects.all()
 	return render(request,'publisher_list.html',{'publishers':publishers})
+
 @login_required
 def store_list(request):
 	# stores=Store.objects.all()
@@ -48,6 +75,8 @@ def store_list(request):
         stores = paginator.page(paginator.num_pages)
     return render(request, 'store_list.html', {'page': page,
                                               'stores': stores})
+
+
 @login_required
 def book_datail(request,id):
     book = get_object_or_404(Book, id=id)
@@ -65,10 +94,8 @@ def book_datail(request,id):
         comment_form=CommentForm()
         new_comment=False
 
-
-
-
     return render(request,'book_detail.html',{'book':book,'comments':comments,'comment_form':comment_form,'new_comment':new_comment})
+
 
 def add_comment(request,id):
     book = Book.objects.get(id=id)
@@ -97,6 +124,8 @@ class BookListView(ListView):
     context_object_name = 'books'
     paginate_by = 3
     template_name = 'book_list.html'
+
+
 
 @login_required
 def BookListByYear(request,year):

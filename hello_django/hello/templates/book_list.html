@@ -6,7 +6,7 @@
 
 <h1 style="font-family: 'Pacifico', cursive;color: #1b6d85;text-align: center;margin-top: 100px"><strong>The Book List</strong></h1>
 <div class="contents">
-            <div style="float:left;margin-left: 200px;margin-top: 50px">
+            <div style="float:left;margin-left: 10%;margin-top: 5%">
                {% for book in books %}
             {#    <p> Book Title: <a href="{% url "book_detail" book.id %}"> {{ book.name }} </a> </p>#}
                 <p> Book Title: <a href="{{ book.get_absolute_url }}" > {{ book.name }} </a> </p>
@@ -24,7 +24,7 @@
             {% include "pagination.html" with page=books %}
             </div>
 
-    <div style="font-family:'Apple Chancery';color:greenyellow  ;font-size:x-large;width: 30%;float: right;margin-top: 50px;margin-right: 200px">
+    <div style="font-family:'Apple Chancery';color:greenyellow  ;font-size:x-large;width: 30%;float: right;margin-top: 5%;margin-right: 15%">
                 <p> Total<strong style="color: gold"> {% total_books %} </strong>books in the database </p>
                <ul style="color: yellowgreen;font-size: initial">Top 5 newest Books:
                          {%  get_new_books as new_list %}
@@ -51,7 +51,7 @@
             <p style="font-size: small"> Book list Archieved by year:
                 {% get_year_list as year_list %}
                    {% for y in year_list %}
-                   <a style="text-decoration: underline" href="{% url "hello:book_year_list" y %}"> {{ y }} </a>&nbsp
+                   <a style="text-decoration: underline;color: yellow" href="{% url "hello:book_year_list" y %}"> {{ y }} </a>&nbsp
                    {% endfor %}<a style="text-decoration: underline" href="{% url "hello:book_list" %}"> All </a>
             </p>
 
