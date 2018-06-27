@@ -96,7 +96,9 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
     'social_core.backends.twitter.TwitterOAuth',
     'social_core.backends.facebook.FacebookOAuth2',
-
+    'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
+    'social_core.backends.google.GoogleOpenId',  # for Google authentication
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -136,6 +138,12 @@ SOCIAL_AUTH_GITHUB_KEY ='04df96b2e3abda5a9f5f'
 SOCIAL_AUTH_GITHUB_SECRET = '8a15016c2ba041b0d715f84f97abd0b9652ba2a5'
 SOCIAL_AUTH_TWITTER_KEY = 	'A9rO4vavVtwR6RVFrZu85uEMI'
 SOCIAL_AUTH_TWITTER_SECRET = 'qoAexb1FlNUnAsH5ybslsDZHe6oq48BBOcbaoYK9x08opAx2g3'
+SOCIAL_AUTH_FACEBOOK_KEY = '241006080037261'  #
+SOCIAL_AUTH_FACEBOOK_SECRET = '9acd5932b97799e012934ea03ace4f61'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '669536186993-qk14vhe19bvfl2bsnfb93r8v1oikvv9u.apps.googleusercontent.com'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'GzLlJR3dXLJlkxW_ZMgQ15VS'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '669536186993-u6tue504naq5gojp1p17f0g9cod8m510.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'G2fP9zVz2WJyCIs6ptLobMrU'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 

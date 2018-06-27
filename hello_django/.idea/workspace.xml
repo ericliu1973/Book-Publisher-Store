@@ -81,8 +81,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hello_django/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="137" column="31" selection-start-line="137" selection-start-column="31" selection-end-line="137" selection-end-column="31" />
+            <state relative-caret-position="117">
+              <caret line="145" column="61" selection-start-line="145" selection-start-column="61" selection-end-line="145" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -90,8 +90,8 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/account/templates/registration/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="321">
+              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
             </state>
           </provider>
         </entry>
@@ -225,9 +225,9 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="-23" />
-    <option name="y" value="3" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="107" />
+    <option name="y" value="82" />
     <option name="width" value="1920" />
     <option name="height" value="1039" />
   </component>
@@ -254,13 +254,6 @@
               <item name="hello_django" type="462c0819:PsiDirectoryNode" />
               <item name="account" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hello_django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hello_django" type="462c0819:PsiDirectoryNode" />
-              <item name="account" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="registration" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hello_django" type="b2602c69:ProjectViewProjectNode" />
@@ -344,7 +337,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-18" y="3" width="1536" height="831" extended-state="1" />
+    <frame x="86" y="66" width="1536" height="831" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -352,7 +345,7 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27960056" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.6376605" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.43502825" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20799458" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
@@ -738,15 +731,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/account/templates/registration/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="321">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hello_django/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="137" column="31" selection-start-line="137" selection-start-column="31" selection-end-line="137" selection-end-column="31" />
+        <state relative-caret-position="117">
+          <caret line="145" column="61" selection-start-line="145" selection-start-column="61" selection-end-line="145" selection-end-column="61" />
         </state>
       </provider>
     </entry>
