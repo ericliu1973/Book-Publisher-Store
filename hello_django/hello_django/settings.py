@@ -14,8 +14,8 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-from django.core.urlresolvers import reverse_lazy
-LOGIN_REDIRECT_URL = reverse_lazy('account:dashboard')
+from django.core.urlresolvers import reverse_lazy,reverse
+LOGIN_REDIRECT_URL = reverse_lazy('account:home')
 LOGIN_URL = reverse_lazy('account:login')
 LOGOUT_URL = reverse_lazy('account:logout')
 # Quick-start development settings - unsuitable for production
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'hello',
     'star_ratings',
     'bootstrap3',
+    'social_django',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -54,6 +55,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'hello_django.urls'
@@ -70,6 +72,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.core.context_processors.request',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -88,6 +92,13 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -121,7 +132,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+SOCIAL_AUTH_GITHUB_KEY ='04df96b2e3abda5a9f5f'
+SOCIAL_AUTH_GITHUB_SECRET = '8a15016c2ba041b0d715f84f97abd0b9652ba2a5'
+SOCIAL_AUTH_TWITTER_KEY = 	'A9rO4vavVtwR6RVFrZu85uEMI'
+SOCIAL_AUTH_TWITTER_SECRET = 'qoAexb1FlNUnAsH5ybslsDZHe6oq48BBOcbaoYK9x08opAx2g3'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
@@ -136,7 +150,9 @@ EMAIL_HOST_USER = 'ericlew1973@gmail.com'
 EMAIL_HOST_PASSWORD = 'Momo2004 '
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
+# LOGIN_URL = reverse('account:login')
+# LOGOUT_URL = reverse('account:logout')
+# LOGIN_REDIRECT_URL = reverse('account:home')
 
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media/')

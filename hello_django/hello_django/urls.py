@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^account/',include('account.urls',namespace='account',app_name='account')),
     url(r'^', include('hello.urls',namespace='hello',app_name='hello')),
     url(r'^ratings/',include('star_ratings.urls',namespace='ratings',app_name='ratings')),
-
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
 ]
 
 if settings.DEBUG:
