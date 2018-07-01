@@ -20,11 +20,17 @@
              {% buttons submit='OK' reset='Cancel' layout='horizontal' %}{% endbuttons %}
         </form>
         <p><a style="color: greenyellow" href="{% url "account:password_reset" %}">Forgotten your password?</a></p>
-        <p> <a class="btn btn-primary btn-lg" role="button" href="{% url 'social:begin' 'github' %}">Login with GitHub</a> </p>
-        <p> <a class="btn btn-primary btn-lg" role="button" href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a></p>
-        <p> <a class="btn btn-primary btn-lg" role="button" href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a> </p>
-        <p> <a class="btn btn-primary btn-lg" role="button" href="{% url "social:begin" "google-oauth2" %}">Login with Google</a></p>
-    </div>
+{#        <p> <a  class='btn btn-primary btn-success' role="button" href="{% url 'social:begin' 'github' %}">Login with GitHub<img style="width: 25px;height: 25px" src="/media/PIC/git-logo.png"></a> </p>#}
+{#        <p> <a class='btn btn-primary btn-success' role="button" href="{% url 'social:begin' 'twitter' %}">Login with Twitter<img style="width: 25px;height: 25px" src="/media/PIC/twitter.png"></a></p>#}
+{#        <p> <a class='btn btn-primary btn-success' role="button" href="{% url 'social:begin' 'facebook' %}">Login with Facebook<img style="width: 25px;height: 25px" src="/media/PIC/Facebook.png"></a> </p>#}
+{#        <p> <a class='btn btn-primary btn-success' role="button" href="{% url "social:begin" "google-oauth2" %}">Login with Google<img style="width: 25px;height: 25px" src="/media/PIC/google.jpg"></a></p>#}
+          <p> <a   href="{% url 'social:begin' 'github' %}"><img style="width: 25px;height: 25px" src="/media/PIC/git-logo.png"></a>
+         <a  href="{% url 'social:begin' 'twitter' %}"><img style="width: 25px;height: 25px" src="/media/PIC/twitter.png"></a>
+         <a href="{% url 'social:begin' 'facebook' %}"><img style="width: 25px;height: 25px" src="/media/PIC/Facebook.png"></a>
+         <a href="{% url "social:begin" "google-oauth2" %}"><img style="width: 25px;height: 25px" src="/media/PIC/google.png"></a></p>
+
+
+       </div>
 
 {#    <div class="social">#}
 {#        <ul>#}
