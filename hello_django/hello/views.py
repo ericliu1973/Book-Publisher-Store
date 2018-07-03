@@ -7,6 +7,7 @@ from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.views.generic import ListView,DetailView
 from hello.forms import CommentForm,SearchForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse,JsonResponse
 # Create your views here.
 
 def hello(request):
@@ -28,6 +29,28 @@ def book_list(request):
             books=paginator.page(paginator.num_pages)
         return render(request,'book_list.html',{'page':page,
                                                     'books':books })
+
+
+@login_required
+def book_list2(request):
+    book_list=Book.objects.all()
+    paginator = Paginator(book_list,4)
+    page= request.GET.get('page')
+    try:
+        books = paginator.page(page)
+    except PageNotAnInteger:
+        books= paginator.page(1)
+    except EmptyPage:
+        if request.is_ajax():
+            return HttpResponse('')
+        books = paginator.page(paginator.num_pages)
+    if request.is_ajax():
+        return  render(request,'book_list_ajax.html',{'books':books})
+    return render(request,'book_list2.html',{'books':books})
+
+
+
+
 
 @login_required
 def author_list(request):

@@ -1,0 +1,40 @@
+{% extends "base_a.html" %}
+{% load book_tag %}
+{% block title %} Book List {% endblock %}
+
+{% block content %}
+
+    <h1 style="font-family: 'Pacifico', cursive;color: #1b6d85;text-align: center;margin-top: 100px"><strong>The Book List</strong></h1>
+            <div id="booklist" class="contents">
+                  {% include "book_list_ajax.html"  %}
+            </div>
+{% endblock %}
+
+
+{% block domready %}
+    var page = 1;
+    var empty_page = false;
+    var block_request = false;
+{#jQuery(window).height()代表了当前可见区域的大小，jQuery(document).height()则代表了整个文档的高度，可视具体情况使用.#}
+{#  注意：当浏览器窗口大小改变时(如最大化或拉大窗口后)，jQuery(window).height() 随之改变，但是jQuery(document).height()是不变的。#}
+{# $(document).scrollTop() 获取垂直滚动的距离 (即当前滚动的地方的窗口顶端到整个页面顶端的距离)#}
+{# $(document).scrollLeft() 这是获取水平滚动条的距离 要获取顶端 只需要获取到scrollTop()==0的时候 就是顶端了；要获取底端 只要获取scrollTop()>=$(document).height()-$(window).height() #}
+{#就可以知道已经滚动到底端了#}
+    $(window).scroll(function() {
+        var margin = $(document).height() - $(window).height() - 200;
+        if  ($(window).scrollTop() > margin && empty_page == false && block_request == false) {
+		    block_request = true;
+		    page += 1;
+		    $.get('?page=' + page, function(data) {
+		        if(data == '')
+		        {
+		            empty_page = true;
+		        }
+		        else {
+                    block_request = false;
+                    $('#booklist').append(data);
+    	        }
+            });
+    	}
+    });
+{% endblock %}

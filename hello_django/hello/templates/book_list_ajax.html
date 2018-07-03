@@ -1,0 +1,19 @@
+
+
+            <div >
+               {% for book in books %}
+            {#    <p> Book Title: <a href="{% url "book_detail" book.id %}"> {{ book.name }} </a> </p>#}
+                <p> Book Title: <a href="{{ book.get_absolute_url }}" > {{ book.name }} </a> </p>
+                <p> Book Price: ${{ book.price }}</p>
+                <p> Book Page: {{ book.pages }}</p>
+                <p> Book Publish Date: {{ book.pubdate }}</p>
+
+                <p> Book Author: {% for a in book.authors.all %}
+                    <a href="{{ a.get_absolute_url }}" >{{ a.name }}, </a>
+                            {% endfor %}
+                </p>
+               <br>
+
+               {% endfor %}
+{#            {% include "pagination.html" with page=books %}#}
+            </div>

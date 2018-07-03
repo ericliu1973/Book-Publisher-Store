@@ -21,7 +21,8 @@ urlpatterns = [
 
     url(r'^author_list/$',views.author_list,name='author_list'),
     url(r'^store_list/$',views.store_list,name='store_list'),
-    url(r'^book_list/$',views.book_list,name='book_list'),
+    # url(r'^book_list/$',views.book_list,name='book_list'),
+    url(r'^book_list/$',views.book_list2,name='book_list'),
     url(r'^publisher_list/$',views.publisher_list),
     url(r'^book_list/(?P<year>\d+)/$',views.BookListByYear,name='book_year_list'),
     # url(r'^book/(?P<id>\d+)/$',views.book_datail,name='book_detail'),
