@@ -5,9 +5,10 @@ from django.contrib.auth.models import User
 from  hello.models import Book,Author,Publisher,Store,Comment
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.views.generic import ListView,DetailView
-from hello.forms import CommentForm,SearchForm
+from hello.forms import CommentForm,SearchForm,EmailForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse,JsonResponse
+from django.core.mail import send_mail
 # Create your views here.
 
 def hello(request):
@@ -135,6 +136,24 @@ def add_comment(request,id):
         new_comment = False
     return render(request, 'add_comment.html',
                   {'book': book, 'comment_form': comment_form, 'new_comment': new_comment})
+
+
+def share_email(request,id):
+    book = Book.objects.get(id=id)
+    sent = False
+    book_abs_url = request.build_absolute_uri(book.get_absolute_url())
+    form =EmailForm()
+    if request.method=='POST':
+        form = EmailForm(data=request.POST)
+        if form.is_valid():
+            cd =form.cleaned_data
+            subject = 'Dear {},your friend {} recomends the book :{} to you'.format(cd['person'],request.user.first_name,book.name)
+            message = '{}\n\nThe URL of this book : {}'.format(cd['info'],book_abs_url)
+            send_mail(subject,message,'admin@liuyu.ca',[cd['to']])
+            sent= True
+        else:
+            form = EmailForm()
+    return render(request,'share.html',{'form':form,'sent':sent,'book':book})
 
 @login_required
 def author_datail(request,id):

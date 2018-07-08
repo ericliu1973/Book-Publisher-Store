@@ -1,0 +1,21 @@
+{% extends "base_a.html" %}
+{% load bootstrap3 %}
+ {% block  title %} Share the book : {{ book.name }} to person {% endblock %}
+  {% block content %}
+
+      {%  if sent %}
+          <h3 style="font-family: Pacifico;color: gold;margin-left: 20%;margin-top: 30%"> E-mail has been sent to your friend succefully! </h3>
+          {% else %}
+        <div style="width: 80%;margin-left: 50px;margin-top: 100px">
+        <p style="margin-left:25%;font-family: Monaco;font-size: x-large"> Share this book :<a style="color: gold;font-size:xx-large" href="{{ book.get_absolute_url }}"> {{ book.name }}</a></p>
+                    <form role="form" class="form-horizontal" action="." method="post">
+                    {% bootstrap_form form layout="horizontal" %}
+                    {% csrf_token %}
+                    {% buttons submit='Send ' reset='cancel' layout='horizontal' %} {% endbuttons %}
+                    </form>
+      </div>
+      {% endif %}
+
+
+
+  {% endblock %}

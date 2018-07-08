@@ -21,8 +21,8 @@ urlpatterns = [
 
     url(r'^author_list/$',views.author_list,name='author_list'),
     url(r'^store_list/$',views.store_list,name='store_list'),
-    # url(r'^book_list/$',views.book_list,name='book_list'),
-    url(r'^book_list/$',views.book_list2,name='book_list'),
+    url(r'^book_list/$',views.book_list,name='book_list'),
+    # url(r'^book_list/$',views.book_list2,name='book_list'),
     url(r'^publisher_list/$',views.publisher_list),
     url(r'^book_list/(?P<year>\d+)/$',views.BookListByYear,name='book_year_list'),
     # url(r'^book/(?P<id>\d+)/$',views.book_datail,name='book_detail'),
@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^book/(?P<pk>[0-9]+)/$',views.BookDetailView.as_view(),name='book_detail'),
     url(r'^testrating/$',views.BookDetailView.as_view(),name='rating_test'),
     url(r'^search/(?P<s_type>\d+)/(?P<keyword>\w+)/$',views.search,name='search'),
+    url(r'^share/(?P<id>\d+)/$',views.share_email,name='share'),
     # url(r'^book_list/$',views.BookListView.as_view(),name='book_list'),
     # url(r'^author_list/$',views.AuthorListView.as_view(),name='author_list'),
 ]

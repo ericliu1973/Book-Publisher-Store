@@ -13,3 +13,9 @@ class SearchForm(forms.Form):
     )
     search_type = forms.IntegerField(widget=forms.widgets.Select(choices=search_type_choice,attrs={'class':'form-control'}))
     search_words=forms.CharField(error_messages={'required':'pls input search words'})
+
+
+class EmailForm(forms.Form):
+    person = forms.CharField(max_length=40)
+    info = forms.CharField( widget=forms.Textarea)
+    to = forms.EmailField()
