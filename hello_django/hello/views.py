@@ -9,6 +9,7 @@ from hello.forms import CommentForm,SearchForm,EmailForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse,JsonResponse
 from django.core.mail import send_mail
+from django.views.generic.dates import YearArchiveView,MonthArchiveView,DayArchiveView
 # Create your views here.
 
 def hello(request):
@@ -210,3 +211,17 @@ class BookDetailView(DetailView):
             'comment_list': comment_list,
         })
         return context
+
+class BookYearArchiveView(YearArchiveView):
+    queryset = Book.objects.all()
+    date_field = "pubdate"
+    make_object_list = True
+    allow_future = True
+
+
+class BookMonthArchiveView(MonthArchiveView):
+    queryset = Book.objects.all()
+    date_field = 'pubdate'
+    make_object_list = True
+    allow_future = True
+

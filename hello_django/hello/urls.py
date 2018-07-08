@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from hello import views
+from django.views.generic.dates import ArchiveIndexView
+from .models import Book
 
 urlpatterns = [
     url(r'^$', views.hello),
@@ -33,6 +35,11 @@ urlpatterns = [
     url(r'^testrating/$',views.BookDetailView.as_view(),name='rating_test'),
     url(r'^search/(?P<s_type>\d+)/(?P<keyword>\w+)/$',views.search,name='search'),
     url(r'^share/(?P<id>\d+)/$',views.share_email,name='share'),
+    url(r'^archive/$',ArchiveIndexView.as_view(model=Book,date_field="pubdate"),name='book_archive'),
+    url(r'^archive/(?P<year>[0-9]{4})/$',views.BookYearArchiveView.as_view(),name='book_year_archive'),
+    url(r'^archive/(?P<year>[0-9]{4})/(?P<month>[0-9]+)/$',views.BookMonthArchiveView.as_view(month_format='%m'),name='book_month_numeric'),
+    url(r'^archive/(?P<year>[0-9]{4})/(?P<month>[-\w]+)/$',views.BookMonthArchiveView.as_view(),name='book_month_archive'),
+
     # url(r'^book_list/$',views.BookListView.as_view(),name='book_list'),
     # url(r'^author_list/$',views.AuthorListView.as_view(),name='author_list'),
 ]

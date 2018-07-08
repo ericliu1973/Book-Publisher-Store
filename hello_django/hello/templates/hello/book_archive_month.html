@@ -1,0 +1,36 @@
+{% extends "base_a.html" %}
+{% load ratings %}
+{% load bootstrap3 %}
+{% block title %} Books ArchiveIndex {% endblock %}
+{% block content %}
+
+<ul style="margin-left: 25% ;margin-top: 10%">
+        {% for book in object_list %}
+                <li>
+                    <a href="{{ book.get_absolute_url }}" style="color: yellow;font-family: 'Agency FB'">
+                            Book Name: <strong style="color: gold;font-family: Pacifico"> {{ book.name }}</strong>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Publish Date:{{ book.pubdate|date:"F j, Y" }}
+                    </a>
+                </li>
+        {% endfor %}
+     <br>
+    {% if previous_month %}
+        {% with y=previous_month|date:"Y" m=previous_month|date:"m" %}
+               <a href="{% url  'hello:book_month_archive' y m %}" style="color: greenyellow;text-decoration: underline;font-size: small">
+                       Previous: {{ previous_month|date:"F Y" }}
+               </a>
+                <br>
+        {% endwith %}
+    {% endif %}
+
+    {% if next_month %}
+          {% with y=next_month|date:"Y" m=next_month|date:"m" %}
+              <a href="{% url  'hello:book_month_archive' y m %}" style="color: greenyellow;text-decoration: underline;font-size: small">
+                     Next: {{ next_month|date:"F Y" }}
+              </a>
+          {% endwith %}
+    {% endif %}
+</ul>
+
+{% endblock %}

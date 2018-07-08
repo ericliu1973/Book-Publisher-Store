@@ -1,0 +1,45 @@
+{% extends "base_a.html" %}
+{% load ratings %}
+{% load bootstrap3 %}
+{% block title %} Books Archive By Year {% endblock %}
+{% block content %}
+
+<div>
+    <h1 style="margin-left: 30%;color: #b92c28;font-family: 'Apple Chancery'">All Books for {{ year|date:"Y" }}</h1>
+    {% for obj in object_list %}
+        <p>
+            <a href="{{ obj.get_absolute_url }}" style="margin-left: 25%;color: yellow;font-family: 'Microsoft PhagsPa'"><strong style="color: gold" >{{ obj.name }}</strong> --publish date: {{ obj.pubdate|date:"F j, Y" }} </a>
+        </p>
+    {% endfor %}
+
+
+    {% if previous_year %}
+        {% with y=previous_year|date:"Y" %}
+               <a href="{% url  'hello:book_year_archive' y %}" style="margin-left: 25%;color: greenyellow;text-decoration: underline;font-size: small">
+                       Previous: {{ previous_year|date:"Y" }}
+               </a>
+                <br>
+        {% endwith %}
+    {% endif %}
+
+    {% if next_year %}
+          {% with y=next_year|date:"Y" %}
+              <a href="{% url  'hello:book_year_archive' y %}" style="margin-left: 25%;color: greenyellow;text-decoration: underline;font-size: small">
+                     Next: {{ next_year|date:"Y" }}
+              </a>
+          {% endwith %}
+    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+{% endblock %}
