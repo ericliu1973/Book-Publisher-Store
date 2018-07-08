@@ -33,6 +33,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hello_django/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="157" column="31" selection-start-line="157" selection-start-column="31" selection-end-line="157" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hello/views.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -75,15 +84,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="book_detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hello/templates/book_detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="38" column="133" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="138" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hello/urls.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -120,17 +120,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="book_archive_year.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="book_archive_year.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hello/templates/hello/book_archive_year.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
+            <state relative-caret-position="210">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="e#252#321#0#HTML" expanded="true" />
                 <element signature="e#385#456#0#HTML" expanded="true" />
                 <element signature="e#535#554#0#HTML" expanded="true" />
-                <element signature="e#738#808#0#HTML" expanded="true" />
-                <element signature="e#1110#1180#0#HTML" expanded="true" />
+                <element signature="e#707#793#0#HTML" expanded="true" />
+                <element signature="e#1066#1153#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -215,7 +215,6 @@
         <option value="$PROJECT_DIR$/hello/templates/book_list.html" />
         <option value="$PROJECT_DIR$/hello_django/urls.py" />
         <option value="$PROJECT_DIR$/account/urls.py" />
-        <option value="$PROJECT_DIR$/hello_django/settings.py" />
         <option value="$PROJECT_DIR$/hello/templates/base_a.html" />
         <option value="$PROJECT_DIR$/hello/templates/book_list_ajax.html" />
         <option value="$PROJECT_DIR$/hello/templates/book_list2.html" />
@@ -230,6 +229,7 @@
         <option value="$PROJECT_DIR$/hello/urls.py" />
         <option value="$PROJECT_DIR$/hello/templates/hello/book_archive_month.html" />
         <option value="$PROJECT_DIR$/hello/templates/hello/book_archive_year.html" />
+        <option value="$PROJECT_DIR$/hello_django/settings.py" />
       </list>
     </option>
   </component>
@@ -242,7 +242,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="11" />
     <option name="y" value="20" />
     <option name="width" value="1920" />
@@ -259,24 +259,6 @@
             <path>
               <item name="hello_django" type="b2602c69:ProjectViewProjectNode" />
               <item name="hello_django" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hello_django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hello_django" type="462c0819:PsiDirectoryNode" />
-              <item name="hello" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hello_django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hello_django" type="462c0819:PsiDirectoryNode" />
-              <item name="hello" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hello_django" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hello_django" type="462c0819:PsiDirectoryNode" />
-              <item name="hello" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="hello" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hello_django" type="b2602c69:ProjectViewProjectNode" />
@@ -361,7 +343,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="9" y="16" width="1536" height="831" extended-state="0" />
+    <frame x="9" y="16" width="1536" height="831" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -598,13 +580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hello_django/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="45" column="6" selection-start-line="45" selection-start-column="3" selection-end-line="45" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hello/templates/book_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -751,15 +726,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hello/templates/hello/book_archive_year.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#252#321#0#HTML" expanded="true" />
             <element signature="e#385#456#0#HTML" expanded="true" />
             <element signature="e#535#554#0#HTML" expanded="true" />
-            <element signature="e#738#808#0#HTML" expanded="true" />
-            <element signature="e#1110#1180#0#HTML" expanded="true" />
+            <element signature="e#707#793#0#HTML" expanded="true" />
+            <element signature="e#1066#1153#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello_django/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="157" column="31" selection-start-line="157" selection-start-column="31" selection-end-line="157" selection-end-column="31" />
         </state>
       </provider>
     </entry>
