@@ -54,7 +54,14 @@
                    <a style="text-decoration: underline;color: yellow" href="{% url "hello:book_year_list" y %}"> {{ y }} </a>&nbsp
                    {% endfor %}<a style="text-decoration: underline" href="{% url "hello:book_list" %}"> All </a>
             </p>
+            <p>
+                     <form action="" method="post" style="font-size: small;color: indigo">
 
+                        {{ form.as_p }}
+                        {% csrf_token %}
+                        <input class="btn btn-sm btn-primary" role="button" type="submit" value="Start Search">
+                      </form>
+            </p>
 {#{% include "pagination.html" with page=page_obj %}#}
 
 </div>

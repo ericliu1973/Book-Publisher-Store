@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from  hello.models import Book,Author,Publisher,Store,Comment
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.views.generic import ListView,DetailView
-from hello.forms import CommentForm,SearchForm,EmailForm
+from hello.forms import CommentForm,SearchForm,EmailForm,BookSearch
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse,JsonResponse
 from django.core.mail import send_mail
@@ -21,16 +21,25 @@ def book_list(request):
         # books=Book.objects.all()
         # return render(request,'book_list.html',{'books':books})
         book_list = Book.objects.all()
-        paginator=Paginator(book_list,3)
-        page=request.GET.get('page')
-        try:
-            books = paginator.page(page)
-        except PageNotAnInteger:
-            books =paginator.page(1)
-        except EmptyPage:
-            books=paginator.page(paginator.num_pages)
-        return render(request,'book_list.html',{'page':page,
-                                                    'books':books })
+
+        if request.method=='GET':
+                paginator=Paginator(book_list,3)
+                form = BookSearch()
+                page=request.GET.get('page')
+                try:
+                    books = paginator.page(page)
+                except PageNotAnInteger:
+                    books =paginator.page(1)
+                except EmptyPage:
+                    books=paginator.page(paginator.num_pages)
+                return render(request,'book_list.html',{'page':page,'books':books,'form':form})
+        else:
+            search_form = BookSearch(data=request.POST)
+            if search_form.is_valid():
+                cd = search_form.cleaned_data
+                year = cd['year']
+                month = cd['month']
+                return HttpResponseRedirect(reverse("hello:book_month_archive", kwargs={'year': year, 'month': month}))
 
 
 @login_required
