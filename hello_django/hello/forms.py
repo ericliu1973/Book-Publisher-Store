@@ -16,6 +16,6 @@ class SearchForm(forms.Form):
 
 
 class EmailForm(forms.Form):
-    person = forms.CharField(max_length=40)
-    info = forms.CharField( widget=forms.Textarea)
-    to = forms.EmailField()
+    person = forms.CharField(max_length=40,widget=forms.TextInput(attrs={'class':'form-control','placeholder':"friend's name",'required':'required',}))
+    info = forms.CharField( widget=forms.Textarea(attrs={'class':'form-control','placeholder':'please write something to your firend','required':"required"}))
+    to = forms.EmailField(widget=forms.TextInput(attrs={"class":"form-control","placeholder":"friend@mailaddress",'required':'required',}))
