@@ -34,6 +34,7 @@ class Book(models.Model):
     authors = models.ManyToManyField(Author,related_name='book')
     publisher = models.ForeignKey(Publisher,related_name='book')
     pubdate = models.DateField()
+    stock_number = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

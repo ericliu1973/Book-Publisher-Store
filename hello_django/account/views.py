@@ -34,6 +34,12 @@ def edit(request):
 @login_required
 def dashboard(request):
     user=request.user.first_name
+    request.session['is_login'] =True
+    print('*******************************************************************')
+    print(request.session.session_key)
+    print (request.session.keys())
+    print(request.session.items())
+    print('*******************************************************************')
     if request.method=='POST':
          search_form=SearchForm(data=request.POST)
          if search_form.is_valid():

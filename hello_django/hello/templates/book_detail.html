@@ -13,9 +13,16 @@
       <li> Readers' Rating: {{ object.rating }}</li>
       <li> Where to Buy: {% for store in object.store.all %}  {{store.name}}&nbsp {% endfor%} </li>
       <li> {% ratings object %} </li>
+      <li> Stock: {{ object.stock_number }}</li>
+
   </ul>
         <br>
-
+        <form action="{% url "cart:cart_add" object.id %}" method="post">
+{#         <form action="" method="post">#}
+            {{ form }}
+            {% csrf_token %}
+            <input type="submit" value="Add to cart">
+        </form>
        <div style="padding-left: 20px">
 
                 {% with comments_list.count as totoal_comments %}

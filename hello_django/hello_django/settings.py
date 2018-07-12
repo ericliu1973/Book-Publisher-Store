@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'star_ratings',
     'bootstrap3',
     'social_django',
+    'cart',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -74,6 +75,7 @@ TEMPLATES = [
                 'django.core.context_processors.request',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -152,7 +154,7 @@ STATIC_URL = '/static/'
 #     os.path.join(BASE_DIR, 'static'),
 # )
 
-
+CART_SESSION_ID = 'cart'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'liuyuwebadm@gmail.com'
 EMAIL_HOST_PASSWORD = 'Jess1211'

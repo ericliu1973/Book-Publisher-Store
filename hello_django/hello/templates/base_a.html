@@ -19,6 +19,24 @@
  <a class="btn btn-primary btn-lg" role="button" style="color: greenyellow" href="{% url 'hello:author_list' %}">Back to Author List</a>
 <a class="btn btn-primary btn-lg" style="color: greenyellow" role="button" href="{% url "hello:book_list" %}">Back to Book List</a>
  <a style="float: right;margin-right:20% " class="btn btn-primary btn-lg" style="color:greenyellow" role="button" href="{% url "account:logout" %}">logout</a>
+
+ <p style="margin-left: 80%;margin-top: 5%">
+     <img style="width: 35px;height: 35px" src="/media/PIC/cart.jpg">
+     {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+        <strong style="color: black">Your cart:  </strong>
+          <a href="{% url "cart:cart_detail" %}" style="color: goldenrod">
+            {{ total_items }} item{{ total_items|pluralize }},${{ cart.get_total_price }}
+         </a>
+       {% else %}
+            Your cart is empty.
+       {% endif %}
+
+    {% endwith %}
+
+
+ </p>
+
   {% block content %}
 
   {% endblock %}
