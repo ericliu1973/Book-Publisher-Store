@@ -1,0 +1,29 @@
+{% extends "base_a.html" %}
+{% load bootstrap3 %}
+{% load static %}
+
+
+{% block title %}
+    Checkout
+{% endblock %}
+
+{% block content %}
+    <h1 style="margin: auto;text-align: center">Checkout</h1>
+
+    <div style="margin-left: 75%" >
+        <h3>Your order</h3>
+        <ul >
+            {% for item in cart %}
+                <li>{{ item.quantity }}x {{ item.product.name }} <span>${{ item.total_price }}</span></li>
+            {% endfor %}
+        </ul>
+        <p>Total: ${{ cart.get_total_price }}</p>
+    </div>
+
+    <form role="form" class="form-horizontal" style="margin-left:25%;width: 450px" action="." method="post" >
+        {%bootstrap_form form layout="horizontal"%}
+{#        <input type="submit" value="Place order">#}
+         {% buttons submit='Send ' reset='cancel' layout='horizontal' %} {% endbuttons %}
+        {% csrf_token %}
+    </form>
+{% endblock %}

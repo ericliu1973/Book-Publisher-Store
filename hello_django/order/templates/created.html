@@ -1,0 +1,30 @@
+{% extends "base_a.html" %}
+{% load static %}
+
+
+{% block title %}
+    Thanks !
+{% endblock %}
+
+{% block content %}
+
+<div style="margin: auto;text-align: center" >
+
+    <h4>Dear <stong style="color:gold;font-family: 'Pacifico', cursive">{{ order.first_name }}&nbsp;&nbsp;{{ order.last_name }}</stong></h4>
+<br>
+
+<div style="font-family: "Roboto Slab", "ff-tisa-web-pro", "Georgia", Arial, sans-serif">     Your order (no: <strong style="color: gold">{{ order.id }}  </strong>) has been successfully put into our system ! we will arrange the following goods:
+<br><br>
+                {% for item in order.item.all %}
+
+                    <h4 style="color:gold;font-family: 'Pacifico', cursive;">
+                      {{ item.quantity }} * {{ item.product.name }}
+                    </h4>
+                {% endfor %}
+
+<br>
+     The destination :<strong style="color:gold"> {{ order.address }},{{ order.city }} </strong><br>
+          Post Code: <strong style="color:gold">{{ order.post_code }}</strong>
+</div>
+</div>
+{% endblock %}

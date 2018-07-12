@@ -59,9 +59,9 @@
 
 
     </p>
-    <p >
-      <a href="{% url "hello:book_list" %}" class="btn bg-danger" role="button" style="margin-left:80% ">Continue shopping</a>
-{#        <a href="{% url "orders:order_create" %}" class="button">Checkout</a>#}
+    <p style="margin-left:70% ">
+      <a href="{% url "hello:book_list" %}" class="btn btn-danger" role="button" >Continue shopping</a>
+      <a href="{% url "order:order_create" %}" class="btn btn-danger" role="button">Checkout</a>
 
     </p>
 {% endblock %}
