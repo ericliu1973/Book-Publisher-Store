@@ -1,0 +1,27 @@
+{% extends "base_a.html" %}
+{% load bootstrap3 %}
+{% block title %} Order List {% endblock %}
+
+{% block content %}
+
+<h1 style="font-family: 'Pacifico', cursive;color: #1b6d85;text-align: center;margin-top: 100px"><strong>Hi {{ name }}</strong></h1>
+
+     <div style="margin-left: 20%;margin-right: 40%;margin-top: 5%;font-family:'Rockwell Condensed'">
+               {% for order in order_list %}
+                    <p> Order No: {{ order.id }}  </p>
+                    <p> Receivor: {{ order.first_name }} &nbsp;{{ order.last_name }}</p>
+                    <p> Address: {{ order.address }}&nbsp;{{ order.city }} &nbsp;&nbsp;Post Code: {{ order.post_code }} </p>
+                    <p> Order Created: {{ order.updated }}</p>
+                         <ur>
+                         {% for item in order.item.all %}
+                                <li> Product Name: <a style="color: gold" href="{{ item.product.get_absolute_url }}"> {{ item.product.name }}  </a> </li>
+                                <li> Quantity:{{ item.quantity }}   </li>
+                         {% endfor %}
+                         </ur>
+                    <p style="color: #3c763d "> Total Price: <strong style="color: goldenrod">${{ order.get_total_price }} </strong> </p>
+                <hr>
+               {% empty %}
+                    <h1 style="text-align: center"> Sorry, there is no order !</h1>
+               {% endfor %}
+     </div>
+{% endblock %}

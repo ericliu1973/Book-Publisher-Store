@@ -1,5 +1,6 @@
 from django.db import models
 from hello.models import Book
+from django.contrib.auth.models import User
 
 class Order (models.Model):
     first_name = models.CharField(max_length=40)
@@ -11,7 +12,7 @@ class Order (models.Model):
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now=True)
     paid=models.BooleanField(default=False)
-
+    owner = models.ForeignKey(User,related_name='order',default='')
 
     def __str__(self):
         return 'order{}'.format(self.id)
