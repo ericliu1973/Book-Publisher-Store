@@ -22,7 +22,7 @@ def book_list(request):
         # books=Book.objects.all()
         # return render(request,'book_list.html',{'books':books})
         book_list = Book.objects.all()
-        print (type(request.user),request.user)
+
         if request.method=='GET':
                 paginator=Paginator(book_list,3)
                 form = BookSearch()

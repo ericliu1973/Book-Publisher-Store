@@ -1,0 +1,69 @@
+{% load staticfiles %}
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+       <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+       <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+       <link href="{% static 'css/style.css' %}" rel="stylesheet">
+       <script src="{% static 'js/jquery.min.js' %}"></script>
+       <script src="{% static 'js/bootstrap.min.js' %}"></script>
+       <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+       <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+    <title>{% block  title %}  {% endblock %}</title>
+</head>
+<body style="background-color: #bce8f1;background-image: url(/media/PIC/img1.jpg)">
+ <a class="btn btn-primary btn-lg" role="button" style="color: greenyellow" href="{% url 'hello:author_list' %}">Back to Author List</a>
+<a class="btn btn-primary btn-lg" style="color: greenyellow" role="button" href="{% url "hello:book_list" %}">Back to Book List</a>
+ <a style="float: right;margin-right:20% " class="btn btn-primary btn-lg" style="color:greenyellow" role="button" href="{% url "account:logout" %}">logout</a>
+
+ <p style="margin-left: 80%;margin-top: 5%">
+     <img style="width: 35px;height: 35px" src="/media/PIC/cart.jpg">
+     {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+        <strong style="color: black">Your cart:  </strong>
+          <a href="{% url "cart:cart_detail" %}" style="color: goldenrod">
+            {{ total_items }} item{{ total_items|pluralize }},${{ cart.get_total_price }}
+         </a>
+       {% else %}
+            Your cart is empty.
+       {% endif %}
+
+    {% endwith %}
+
+
+ </p>
+
+  {% block content %}
+
+  {% endblock %}
+
+{#提供对于AJAX的支持 同时支持对于POST 访问的CSRF #}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src=" http://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js "></script>
+    <script>
+        var csrftoken = $.cookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+        $(document).ready(function(){
+            {% block domready %}
+            {% endblock %}
+		});
+    </script>
+
+
+</body>
+</html>

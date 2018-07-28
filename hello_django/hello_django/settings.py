@@ -25,9 +25,9 @@ LOGOUT_URL = reverse_lazy('account:logout')
 SECRET_KEY = '=s-vp362y067f3a67xl$au9t-uv8@6g6k1#hslin&!nqb_5tiu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.liuyu.ca']
 
 
 # Application definition
@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'bootstrap3',
     'social_django',
     'cart',
+    'paypal.standard.ipn',
     'order',
+    'payment',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -102,7 +104,8 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
     'social_core.backends.google.GoogleOpenId',  # for Google authentication
     'social_core.backends.google.GoogleOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.weibo.WeiboOAuth2',
+   'django.contrib.auth.backends.ModelBackend',
 )
 
 # Password validation
@@ -141,21 +144,25 @@ SOCIAL_AUTH_GITHUB_KEY ='04df96b2e3abda5a9f5f'
 SOCIAL_AUTH_GITHUB_SECRET = '8a15016c2ba041b0d715f84f97abd0b9652ba2a5'
 SOCIAL_AUTH_TWITTER_KEY = 	'A9rO4vavVtwR6RVFrZu85uEMI'
 SOCIAL_AUTH_TWITTER_SECRET = 'qoAexb1FlNUnAsH5ybslsDZHe6oq48BBOcbaoYK9x08opAx2g3'
-SOCIAL_AUTH_FACEBOOK_KEY = '241006080037261'  #
-SOCIAL_AUTH_FACEBOOK_SECRET = '9acd5932b97799e012934ea03ace4f61'
+SOCIAL_AUTH_FACEBOOK_KEY = '1686428098072704'
+SOCIAL_AUTH_FACEBOOK_SECRET = '8e1379d0a51efc914a77e6436cd4a130'
 # SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '669536186993-qk14vhe19bvfl2bsnfb93r8v1oikvv9u.apps.googleusercontent.com'
 # SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'GzLlJR3dXLJlkxW_ZMgQ15VS'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '669536186993-u6tue504naq5gojp1p17f0g9cod8m510.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'G2fP9zVz2WJyCIs6ptLobMrU'
+
+SOCIAL_AUTH_WEIBO_KEY = '2766176293'   #΢²©
+SOCIAL_AUTH_WEIBO_SECRET = 'b0deae4adefec67ee0d2033e72d94108'  #΢²©
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-
+CART_SESSION_ID = 'cart'
+STATIC_ROOT=os.path.join(BASE_DIR,'static')
 STATIC_URL = '/static/'
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, 'static'),
 # )
 
-CART_SESSION_ID = 'cart'
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'liuyuwebadm@gmail.com'
 EMAIL_HOST_PASSWORD = 'Jess1211'
@@ -167,3 +174,9 @@ EMAIL_USE_TLS = True
 
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
+
+
+#django-paypal settings
+#PAYPAL_RECEIVER_EMAIL='ericlew1973@gmail.com'
+PAYPAL_RECEIVER_EMAIL='ericlew1973-facilitator@gmail.com'
+PAYPAL_TEST=True

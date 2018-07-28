@@ -2,8 +2,8 @@
 {% load bootstrap3 %}
 {% block title %}Log In Page   {% endblock %}
 {% block content %}
-<div style="position: fixed;margin-left: 35%;margin-top: 15%">
-<h1 style="text-align: center;color: gold">Welcome to Book Query System</h1>
+<div style="position: fixed;margin-left: 25%;margin-top: 15%">
+<h1 style="text-align: center;color: gold">Welcome to Eric's Book Sale System</h1>
     {% if form.errors %}
         <p>Your username and password didn't match. Please try again.</p>
     {% else %}
@@ -20,19 +20,16 @@
              {% buttons submit='OK' reset='Cancel' layout='horizontal' %}{% endbuttons %}
         </form>
         <p><a style="color: greenyellow" href="{% url "account:password_reset" %}">Forgotten your password?</a></p>
-{#        <p> <a  class='btn btn-primary btn-success' role="button" href="{% url 'social:begin' 'github' %}">Login with GitHub<img style="width: 25px;height: 25px" src="/media/PIC/git-logo.png"></a> </p>#}
-{#        <p> <a class='btn btn-primary btn-success' role="button" href="{% url 'social:begin' 'twitter' %}">Login with Twitter<img style="width: 25px;height: 25px" src="/media/PIC/twitter.png"></a></p>#}
-{#        <p> <a class='btn btn-primary btn-success' role="button" href="{% url 'social:begin' 'facebook' %}">Login with Facebook<img style="width: 25px;height: 25px" src="/media/PIC/Facebook.png"></a> </p>#}
-{#        <p> <a class='btn btn-primary btn-success' role="button" href="{% url "social:begin" "google-oauth2" %}">Login with Google<img style="width: 25px;height: 25px" src="/media/PIC/google.jpg"></a></p>#}
-          <p> <a   href="{% url 'social:begin' 'github' %}"><img style="width: 25px;height: 25px" src="/media/PIC/git-logo.png"></a>
+
+   <p> <a   href="{% url 'social:begin' 'github' %}"><img style="width: 25px;height: 25px" src="/media/PIC/git-logo.png"></a>
          <a  href="{% url 'social:begin' 'twitter' %}"><img style="width: 25px;height: 25px" src="/media/PIC/twitter.png"></a>
          <a href="{% url 'social:begin' 'facebook' %}"><img style="width: 25px;height: 25px" src="/media/PIC/Facebook.png"></a>
          <a href="{% url "social:begin" "google-oauth2" %}"><img style="width: 25px;height: 25px" src="/media/PIC/google.png"></a>
-         <a href="{% url "social:begin" "weibo" %}"><img style="width: 25px;height: 25px" src="/media/PIC/weibo.jpg"></a>
-          </p>
-         <wb:share-button appkey="2766176293" addition="number" type="icon" ralateUid="6590114854" default_text="Django%20%E7%9A%84%E9%AD%85%E5%8A%9B"></wb:share-button>
+	 <a href="{% url "social:begin" "weibo" %}"><img style="width: 25px;height: 25px" src="/media/PIC/weibo.jpg"></a></p>
+	<wb:share-button appkey="2766176293" addition="number" type="icon" ralateUid="6590114854" default_text="Django%20%E7%9A%84%E9%AD%85%E5%8A%9B"></wb:share-button>
 
-       </div>
+    
+</div>
 
 {#    <div class="social">#}
 {#        <ul>#}

@@ -5,8 +5,5 @@
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
       <introspection-schemas>*:*</introspection-schemas>
     </data-source>
-    <data-source name="db [2]" uuid="a22a0f7c-2f17-4720-a550-c799b8daf41e">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
-    </data-source>
   </component>
 </project>
