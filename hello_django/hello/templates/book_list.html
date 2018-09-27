@@ -18,7 +18,24 @@
                     <a href="{{ a.get_absolute_url }}" >{{ a.name }}, </a>
                             {% endfor %}
                 </p>
-               <br>
+                <p style="color: grey;font-family:'Adobe Devanagari'">
+{#                    Tags: {{ book.tags.all|join:", " }}</p>#}
+{#                 <p style ="color:grey; font-famiy:'Adobe Devanagari'">#}
+{##}
+{#                        {%  for tag in book.tags.all %}#}
+{#                            <a href="{% url "hello:book_list_by_tag" tag_slug %}"> {{ tag.name }}</a>#}
+{#                            {% if not forloop.last %} ,{% endif %}#}
+{#                        {% endfor %}#}
+
+                   Tags:{% for tag in book.tags.all %}
+                <a href="{% url "hello:book_list_by_tag" tag.slug %}">
+                       {{ tag.name }}
+               </a>
+                     {% if not forloop.last %}, {% endif %}
+             {% endfor %}
+
+                 </p>
+                   <br>
 
                {% endfor %}
             {% include "pagination.html" with page=books %}

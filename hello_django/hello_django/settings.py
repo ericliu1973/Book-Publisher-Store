@@ -15,9 +15,9 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 from django.core.urlresolvers import reverse_lazy,reverse
-LOGIN_REDIRECT_URL = reverse_lazy('account:home')
-LOGIN_URL = reverse_lazy('account:login')
-LOGOUT_URL = reverse_lazy('account:logout')
+LOGIN_REDIRECT_URL = reverse_lazy('account:home')  #指定成功登陆后的跳转地址
+LOGIN_URL = reverse_lazy('account:login')          #指定登陆的地址
+LOGOUT_URL = reverse_lazy('account:logout')        #指定登陆退出后的跳转地址
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -27,27 +27,28 @@ SECRET_KEY = '=s-vp362y067f3a67xl$au9t-uv8@6g6k1#hslin&!nqb_5tiu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True 
 
-ALLOWED_HOSTS = ['www.liuyu.ca']
+ALLOWED_HOSTS = ['www.liuyu.ca','127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'account',
+    'account',       #用户认证应用
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hello',
-    'star_ratings',
-    'bootstrap3',
-    'social_django',
+    'hello',        #图书核心展示
+    'star_ratings',  #商品评分
+    'bootstrap3',    #bootstrap3
+    'social_django', #社交认证
     'cart',
-    'paypal.standard.ipn',
+    'paypal.standard.ipn',  #支付程序
     'order',
     'payment',
+    'taggit',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -59,7 +60,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',   # 社交认证  注意中间件加载的顺序
 ]
 
 ROOT_URLCONF = 'hello_django.urls'
@@ -75,10 +76,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.core.context_processors.request',
+                'django.template.context_processors.request',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
-                'cart.context_processors.cart',
+                'cart.context_processors.cart',      #context_processors 提供上下文的全局变量 一次定义在所有的模板文件中生效
             ],
         },
     },
@@ -155,7 +156,7 @@ SOCIAL_AUTH_WEIBO_KEY = '2766176293'   #΢²©
 SOCIAL_AUTH_WEIBO_SECRET = 'b0deae4adefec67ee0d2033e72d94108'  #΢²©
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-CART_SESSION_ID = 'cart'
+CART_SESSION_ID = 'cart'   # CART_SESSION_ID常量
 STATIC_ROOT=os.path.join(BASE_DIR,'static')
 STATIC_URL = '/static/'
 # STATICFILES_DIRS = (

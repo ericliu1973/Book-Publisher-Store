@@ -13,21 +13,21 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf.urls import include,url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^paypal/', include('paypal.standard.ipn.urls')),
-    url(r'^order/', include('order.urls', namespace='order',app_name='order')),	
-    url(r'^cart/', include('cart.urls', namespace='cart')),
-    url(r'^payment/', include('payment.urls', namespace='payment')),
-    url(r'^account/',include('account.urls',namespace='account',app_name='account')),
-    url(r'^', include('hello.urls',namespace='hello',app_name='hello')),
-    url(r'^ratings/',include('star_ratings.urls',namespace='ratings',app_name='ratings')),
-    url(r'^oauth/', include('social_django.urls', namespace='social')),
+    url(r'^paypal/', include("paypal.standard.ipn.urls")),
+    url(r'^order/', include("order.urls", namespace='order',app_name='order')),
+    url(r'^cart/', include("cart.urls", namespace='cart')),
+    url(r'^payment/', include("payment.urls", namespace='payment')),
+    url(r'^account/',include("account.urls",namespace='account',app_name='account')),
+    url(r'^', include("hello.urls",namespace='hello',app_name='hello')),
+    url(r'^ratings/',include("star_ratings.urls",namespace='ratings',app_name='ratings')),
+    url(r'^oauth/', include("social_django.urls", namespace='social')),
 ]
 
 if settings.DEBUG:

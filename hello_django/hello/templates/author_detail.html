@@ -15,7 +15,7 @@
       <li> Birth Date: {{ author.date_of_birth }}</li>
       <li> Age: {{ author.age }}</li>
       <li> Nation: {{ author.nation }}</li>
-      <li> Email: {{ author.email }}</li>
+      <li> Email: <a href="mailto:{{ author.email }}" style="color: red">{{ author.email }}</a></li>
 
   </ul>
 {#<br><br>#}

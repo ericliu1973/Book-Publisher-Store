@@ -3,6 +3,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from star_ratings.models import Rating
 from django.contrib.contenttypes.fields import GenericRelation
+from  taggit.managers import TaggableManager
 
 class Author(models.Model):
     name = models.CharField(max_length=100)
@@ -16,6 +17,8 @@ class Author(models.Model):
     def __str__(self):
         return self.name
 
+	
+	#通过定于get_absolute_url的方法实现反向URL 	
     def get_absolute_url(self):
         return reverse('hello:author_detail',args=[self.id])
 
@@ -23,6 +26,7 @@ class Publisher(models.Model):
     name = models.CharField(max_length=300)
     num_awards = models.IntegerField()
 
+    # 定义queryset显示方式
     def __str__(self):
         return self.name
 
@@ -35,10 +39,11 @@ class Book(models.Model):
     publisher = models.ForeignKey(Publisher,related_name='book')
     pubdate = models.DateField()
     stock_number = models.IntegerField(default=0)
-
+    tags = TaggableManager()
     def __str__(self):
         return self.name
-
+		
+	#通过定于get_absolute_url的方法实现反向URL 
     def get_absolute_url(self):
         return reverse('hello:book_detail',args=[self.id,])
 
@@ -52,7 +57,7 @@ class Store(models.Model):
 
 
 class Comment(models.Model):
-    book =models.ForeignKey(Book,related_name='comment')
+    book =models.ForeignKey(Book,related_name='comment')      #通过Book的manager可以采用annotate聚合方式对每本书的comment进行汇总
     content = models.TextField()
     pubdate= models.DateTimeField(auto_now_add=True)
     # pubdate_f=models.DateTimeField(auto_now_add=True)
@@ -62,4 +67,4 @@ class Comment(models.Model):
         ordering =('pubdate',)
 
     def __str__(self):
-        return 'Comment by {} on {}'.format(self.person,self.book)
+        return 'Comment by {} on {}'.format(self.person,self.book)   #注意format函数的使用方式

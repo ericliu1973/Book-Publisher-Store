@@ -38,11 +38,11 @@
                     <form action="{% url "cart:cart_add" product.id %}" method="post">
                         {{ item.update_quantity_form.quantity }}
                         {{ item.update_quantity_form.update }}
-                        <input type="submit" value="Update">
+                        <input type="submit" class="btn btn-warning" role="button" value="Update">
                         {% csrf_token %}
                     </form>
                 </td>
-                <td><a href="{% url "cart:cart_remove" product.id %}">Remove</a></td>
+                <td><a href="{% url "cart:cart_remove" product.id %}" class="btn btn-warning" role="button">Remove</a></td>
                 <td >${{ item.price }}</td>
                 <td >${{ item.total_price }}</td>
             </tr>
@@ -50,9 +50,9 @@
         {% endfor %}
 
         <tr class="success">
-            <td>Total:</td>
+            <td>Total Price :</td>
 {#            <td colspan="4"></td>#}
-            <td >${{ cart.get_total_price }}</td>
+            <td class="table-bordered" >${{ cart.get_total_price }}</td>
         </tr>
         </tbody>
     </table>

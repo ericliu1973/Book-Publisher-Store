@@ -5,6 +5,7 @@
 {% block content %}
 
      <h1 style="margin-left: 30%;color: #b92c28;font-family: 'Apple Chancery'">All Books Archived By Published Date</h1>
+{#    latest 是类视图函数传递过来的上下文变量，Book Model list#}
     {% for obj in latest %}
         <p>
             <a href="{{ obj.get_absolute_url }}" style="margin-left: 25%;color: yellow;font-family: 'Microsoft PhagsPa'"><strong style="color: gold" >{{ obj.name }}</strong> --publish date: {{ obj.pubdate|date:"F j, Y" }} </a>
@@ -13,3 +14,5 @@
 
 
 {% endblock %}
+
+{#HTML文件的目录结构是类视图要求#}

@@ -14,6 +14,13 @@
       <li> Where to Buy: {% for store in object.store.all %}  {{store.name}}&nbsp {% endfor%} </li>
       <li> {% ratings object %} </li>
       <li> Stock: {{ object.stock_number }}</li>
+      <li> Tags:{% for tag in object.tags.all %}
+                <a href="{% url "hello:book_list_by_tag" tag.slug %}">
+                       {{ tag.name }}
+               </a>
+                {% if not forloop.last %}, {% endif %}
+             {% endfor %}
+      </li>
 
   </ul>
         <br>
@@ -23,6 +30,30 @@
             {% csrf_token %}
             <input type="submit" value="Add to cart">
         </form>
+        <div>
+            <h4> Recommend Similar Books:</h4>
+            <ul>{% for book in similar_book_list %}
+
+              <li>Book :  <a href="{% url "hello:book_detail" book.pk %}"> {{ book.name }} </a></li>
+              <li>Authors :{% for author in book.authors.all %}<a href ="{% url "hello:author_detail" author.pk %}">{{ author.name }}</a>
+              {% if not forloop.last %}, {% endif %}
+              {% endfor %}</li>
+              <li>Tags:
+                  {% for tag in book.tags.all %}
+                        <a href="{% url "hello:book_list_by_tag" tag.slug %}"> {{ tag.name }} </a>
+                        {% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+              </li>
+
+              <br>
+            {% endfor %}
+
+            </ul>
+        </div>
+
+
+
+
        <div style="padding-left: 20px">
 
                 {% with comments_list.count as totoal_comments %}

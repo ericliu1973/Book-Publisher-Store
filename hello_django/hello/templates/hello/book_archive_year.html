@@ -5,6 +5,14 @@
 {% block content %}
 
 <div>
+{#    <h1 style="margin-left: 30%;color: #b92c28;font-family: 'Apple Chancery'">Test of date_list {{ year|date:"Y" }}</h1>#}
+{#    {% for j in date_list %}#}
+{#        <p style="margin-left: 30%;color: #b92c28;font-family: 'Apple Chancery'">#}
+{#            {{ j }}#}
+{#            {{ j|date:"M Y"}}#}
+{#        </p>#}
+{#    {% endfor %}#}
+
     <h1 style="margin-left: 30%;color: #b92c28;font-family: 'Apple Chancery'">All Books for {{ year|date:"Y" }}</h1>
     {% for obj in object_list %}
         <p>
@@ -31,15 +39,7 @@
     {% endif %}
 
 
-
-
-
-
-
-
-
-
-
-
 </div>
 {% endblock %}
+
+{#HTML文件的目录结构是类视图要求#}

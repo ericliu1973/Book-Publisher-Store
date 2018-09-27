@@ -2,6 +2,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from paypal.standard.forms import PayPalPaymentsForm
 from order.models import Order
+from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -21,8 +22,8 @@ def payment_process(request):
     host = request.get_host()
 
     paypal_dict = {
-        #'business': settings.PAYPAL_RECEIVER_EMAIL,
-        'business': 'ericlew1973-facilitator@gmail.com',
+        'business': settings.PAYPAL_RECEIVER_EMAIL,
+        # 'business': 'ericlew1973-facilitator@gmail.com',
         # 'amount': '%.2f' % order.get_total_cost().quantize( Decimal('.01')),
         'amount': '%.2f' % order.get_total_price(),
 
