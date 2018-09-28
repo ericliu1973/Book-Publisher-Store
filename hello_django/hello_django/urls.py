@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^', include("hello.urls",namespace='hello',app_name='hello')),
     url(r'^ratings/',include("star_ratings.urls",namespace='ratings',app_name='ratings')),
     url(r'^oauth/', include("social_django.urls", namespace='social')),
+    url(r'^search/', include('haystack.urls')),
 ]
 
 if settings.DEBUG:

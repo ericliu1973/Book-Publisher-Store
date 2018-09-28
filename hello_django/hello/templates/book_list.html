@@ -38,6 +38,12 @@
                    <br>
 
                {% endfor %}
+                <form method='get' action="/search/" target="_blank">
+                    <input type="text" name="q">
+                    <input type="hidden" name="models" value="hello.author">
+                    <input type="hidden" name="models" value="hello.book">
+                    <input type="submit" value="WhooSH 查询">
+                </form>
             {% include "pagination.html" with page=books %}
             </div>
 

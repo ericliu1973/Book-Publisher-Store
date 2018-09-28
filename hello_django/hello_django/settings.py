@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'haystack',
     'hello',        #图书核心展示
     'star_ratings',  #商品评分
     'bootstrap3',    #bootstrap3
@@ -181,3 +182,12 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
 #PAYPAL_RECEIVER_EMAIL='ericlew1973@gmail.com'
 PAYPAL_RECEIVER_EMAIL='ericlew1973-facilitator@gmail.com'
 PAYPAL_TEST=True
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+# HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
+# HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

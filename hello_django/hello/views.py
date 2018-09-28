@@ -88,7 +88,10 @@ def search(request,s_type,keyword):
         blist=Book.objects.filter(name__contains=keyword)
         if len(blist)>0:
             return render(request,'search_result.html',{'books':blist,'flag':1,'num':1})
-
+    # if s_type=='2':
+    #     plist=Publisher.objects.filter(name__contains=keyword)
+    #     if len(plist)>0:
+    #         return render(request,'search_result.html',{'publishers':plist,'flag':2,'num':1})
     return render(request,'search_result.html',{'num':0})
 
 @login_required
