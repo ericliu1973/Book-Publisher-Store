@@ -12,12 +12,14 @@ from django.core.mail import send_mail
 from django.views.generic.dates import YearArchiveView,MonthArchiveView,DayArchiveView
 from cart.form import CartAddForm
 from taggit.models import Tag
+from django.views.decorators.cache import cache_page
 # Create your views here.
 
 def hello(request):
 	return  HttpResponseRedirect(reverse("account:login",))
 
 @login_required
+# @cache_page(5)
 def book_list(request,tag_slug =None):
         # books=Book.objects.all()
         # return render(request,'book_list.html',{'books':books})
@@ -49,6 +51,7 @@ def book_list(request,tag_slug =None):
                 return HttpResponseRedirect(reverse("hello:book_month_archive", kwargs={'year': year, 'month': month}))
 
 @login_required
+# @cache_page(5)
 def book_list2(request):
     book_list=Book.objects.all()
     paginator = Paginator(book_list,4)
@@ -66,6 +69,7 @@ def book_list2(request):
     return render(request,'book_list2.html',{'books':books})
 
 @login_required
+@cache_page(5)
 def author_list(request):
     authors = Author.objects.all()
     if request.method=='POST':
@@ -95,6 +99,7 @@ def search(request,s_type,keyword):
     return render(request,'search_result.html',{'num':0})
 
 @login_required
+# @cache_page(5)
 def publisher_list(request):
 	publishers=Publisher.objects.all()
 	return render(request,'publisher_list.html',{'publishers':publishers})
@@ -116,6 +121,7 @@ def store_list(request):
                                               'stores': stores})
 
 @login_required
+# @cache_page(5)
 def book_datail(request,id):
     book = get_object_or_404(Book, id=id)
 
@@ -168,6 +174,7 @@ def share_email(request,id):
     return render(request,'share.html',{'form':form,'sent':sent,'book':book})
 
 @login_required
+@cache_page(5)
 def author_datail(request,id):
     author = get_object_or_404(Author, id=id)
     return render(request,'author_detail.html',{'author':author})

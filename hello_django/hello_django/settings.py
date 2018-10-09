@@ -164,7 +164,17 @@ STATIC_URL = '/static/'
 #     os.path.join(BASE_DIR, 'static'),
 # )
 
-
+CACHES = {
+    "default": {
+       'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+       'LOCATION': 'unique-snowflake',
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/0",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+     }
+}
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'liuyuwebadm@gmail.com'
 EMAIL_HOST_PASSWORD = 'Jess1211'
@@ -189,5 +199,5 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
     },
 }
-# HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
-# HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

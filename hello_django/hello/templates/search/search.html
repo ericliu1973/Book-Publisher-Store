@@ -1,5 +1,5 @@
 {% extends 'base_a.html' %}
-
+{% load highlight %}
 {% block content %}
     <div style="margin-left: 40%">
     <h2>Search</h2>
@@ -21,7 +21,7 @@
             {% for result in page.object_list %}
                 <p>
                     <a href="{{ result.object.get_absolute_url }}" style="color: red"><strong>{{ result.object.name }}</strong></a>
-{#                    <a href="{{ result.object.get_absolute_url }}">{%  hightlight result.object.name with query%} </a>#}
+{#                    <a href="{{ result.object.get_absolute_url }}">{%  highlight result.object.name with query  html_tag "div" css_class "highlight_me_please" %} </a>#}
                 </p>
             {% empty %}
                 <p>No results found.</p>

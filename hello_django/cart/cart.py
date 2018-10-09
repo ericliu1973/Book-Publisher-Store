@@ -1,7 +1,8 @@
 from decimal import Decimal
 from django.conf import settings
 from hello.models import Book
-
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import  reverse
 
 class Cart(object):
 
@@ -42,6 +43,8 @@ class Cart(object):
         """
         Add a product to the cart or update its quantity.
         """
+        cur_num = product.stock_number
+        print('the current stock number is : %s'%cur_num)
         product_id = str(product.id)  #session 采用JSON结构，因此其key只能支持字符串形式 dict_keys(['quantity', 'price', 'product', 'total_price', 'update_quantity_form'])
         if product_id not in self.cart:
             self.cart[product_id] = {'quantity': 0,
@@ -53,18 +56,38 @@ class Cart(object):
         print('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
 
         if update_quantity:
+            if cur_num>= quantity:
+                ori_cart_num = self.cart[product_id]['quantity']
+                self.cart[product_id]['quantity'] = quantity
+                cur_num = cur_num + ori_cart_num - quantity
+                product.stock_number = cur_num
+                product.save()
+                self.save()
+            else:
+                print('The stock number is not enough for purchasing')
+                return HttpResponseRedirect(reverse("hello:book_detail", kwargs={'pk': product.pk}))
 
-            self.cart[product_id]['quantity'] = quantity
         else:
-            self.cart[product_id]['quantity'] += quantity    #update_quantity为false 则是累加商品数量
-        self.save()
+            if cur_num>= quantity:
+                cur_num = cur_num - quantity
+                self.cart[product_id]['quantity'] += quantity    #update_quantity为false 则是累加商品数量
+                product.stock_number = cur_num
+                product.save()
+                self.save()
+            else:
+                print('The stock number is not enough for purchasing')
+                return HttpResponseRedirect(reverse("hello:book_detail", kwargs={'pk': product.pk}))
+
 
     def remove(self, product):
         """
         Remove a product from the cart.
         """
+
         product_id = str(product.id)
         if product_id in self.cart:
+            product.stock_number +=self.cart[product_id]['quantity']
+            product.save()
             del self.cart[product_id]
             self.save()
 

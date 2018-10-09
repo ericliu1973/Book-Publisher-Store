@@ -24,12 +24,18 @@
 
   </ul>
         <br>
-        <form action="{% url "cart:cart_add" object.id %}" method="post">
-{#         <form action="" method="post">#}
-            {{ form }}
-            {% csrf_token %}
-            <input type="submit" value="Add to cart">
-        </form>
+     {% with object.stock_number as num %}
+     {% if num > 0 %}
+         <span style="color: green"> There are totally</span> <span style="color: red">{{ num }}</span> <span style="color: green"> book in stock !</span>
+                <form action="{% url "cart:cart_add" object.id %}" method="post">
+                    {{ form }}
+                    {% csrf_token %}
+                    <input type="submit" value="Add to cart">
+                </form>
+      {% elif num == 0 %}
+                <h3 style="color: red"> This book is sold out !</h3>
+     {% endif %}
+      {% endwith %}
         <div>
             <h4> Recommend Similar Books:</h4>
             <ul>{% for book in similar_book_list %}
