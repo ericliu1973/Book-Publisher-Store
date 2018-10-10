@@ -27,7 +27,7 @@ SECRET_KEY = '=s-vp362y067f3a67xl$au9t-uv8@6g6k1#hslin&!nqb_5tiu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True 
 
-ALLOWED_HOSTS = ['www.liuyu.ca','127.0.0.1']
+ALLOWED_HOSTS = ['www.liuyu.ca','127.0.0.1','74d40e49.ngrok.io']
 
 
 # Application definition
@@ -176,8 +176,12 @@ CACHES = {
      }
 }
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'liuyuwebadm@gmail.com'
-EMAIL_HOST_PASSWORD = 'Jess1211'
+# EMAIL_HOST_USER = 'liuyuwebadm@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Momo2004'
+EMAIL_HOST_USER = 'ericlew1973@gmail.com'
+EMAIL_HOST_PASSWORD = 'Momo2004'
+
+
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # LOGIN_URL = reverse('account:login')
